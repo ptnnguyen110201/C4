@@ -11,6 +11,19 @@ public class LoadComPonentsManager : MonoBehaviour
     protected virtual void Awake()
     {
         this.LoadComponents();
+
+    }
+    protected virtual void Start()
+    {
+        // For Override 
+    }
+    protected virtual void OnEnable()
+    {
+        // For Override 
+    }
+    protected virtual void OnDisable()
+    {
+        // For Override 
     }
     protected virtual void ResetValue()
     {
