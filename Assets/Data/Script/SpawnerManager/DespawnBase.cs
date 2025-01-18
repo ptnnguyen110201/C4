@@ -1,5 +1,6 @@
 using UnityEngine;
 
-public class DespawnBase : LoadComPonentsManager
+public abstract class DespawnBase : LoadComPonentsManager
 {
+    public abstract void DespawnObj();
 }

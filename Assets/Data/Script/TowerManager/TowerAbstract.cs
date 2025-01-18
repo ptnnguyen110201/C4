@@ -1,19 +1,20 @@
 using UnityEngine;
 
-public abstract class EnemyAbstract : LoadComPonentsManager
+public abstract class TowerAbstract : LoadComPonentsManager
 {
-    [SerializeField] protected EnemyCtrl enemyCtrl;
+    [SerializeField] protected TowerCtrl towerCtrl;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadEnemyCtrl();
+        this.LoadTowerCtrl();
     }
 
-    protected virtual void LoadEnemyCtrl()
+    protected virtual void LoadTowerCtrl()
     {
-        if (this.enemyCtrl != null) return;
-        this.enemyCtrl = transform.GetComponentInParent<EnemyCtrl>();
-        Debug.Log(transform.name + ": Load EnemyCtrl", gameObject);
+        if (this.towerCtrl != null) return;
+        this.towerCtrl = transform.GetComponentInParent<TowerCtrl>();
+        Debug.Log(transform.name + ": Load TowerCtrl", gameObject);
     }
+
 }

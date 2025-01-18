@@ -16,10 +16,15 @@ public class TowerTargeting : TowerAbstract
     protected virtual void FixedUpdate()
     {
         this.FindNearest();
+        this.RemoveDeadEnemy();
     }
     protected virtual void FindNearest()
     {
-        if (this.enemyCtrls.Count <= 0) return;
+        if (this.enemyCtrls.Count <= 0) 
+        {
+            this.nearestEnemy = null;
+            return;
+        }
         float nearestDistance = Mathf.Infinity;
         float enemyDistance;
         foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
@@ -38,6 +43,7 @@ public class TowerTargeting : TowerAbstract
 
     protected virtual void OnTriggerEnter(Collider collider)
     {
+
         this.AddEnemy(collider);
     }
     protected virtual void OnTriggerExit(Collider collider)
@@ -48,6 +54,7 @@ public class TowerTargeting : TowerAbstract
     {
         if (collider.name != Const.TOWER_TARGETABLE) return;
         EnemyCtrl enemyCtrl = collider.transform.GetComponentInParent<EnemyCtrl>();
+        if (enemyCtrl.EnemyDamageReceiver.IsDead()) return;
         this.enemyCtrls.Add(enemyCtrl);
     }
     protected virtual void RemoveEnemy(Collider collider)
@@ -57,7 +64,7 @@ public class TowerTargeting : TowerAbstract
         if (!this.enemyCtrls.Contains(enemyCtrl)) return;
         this.enemyCtrls.Remove(enemyCtrl);
     }
-
+    
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -68,7 +75,7 @@ public class TowerTargeting : TowerAbstract
     {
         if (this.sphereCollider != null) return;
         this.sphereCollider = transform.GetComponent<SphereCollider>();
-        this.sphereCollider.radius = 5;
+        this.sphereCollider.radius = 10;
         this.sphereCollider.isTrigger = true;
         Debug.Log(transform.name + ": Load SphereCollider", gameObject);
     }
@@ -81,7 +88,18 @@ public class TowerTargeting : TowerAbstract
     }
 
 
-
+    protected virtual void RemoveDeadEnemy() 
+    {
+        foreach(EnemyCtrl enemyCtrl in this.enemyCtrls) 
+        {
+            if (enemyCtrl.EnemyDamageReceiver.IsDead()) 
+            {
+                if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
+;                this.enemyCtrls.Remove(enemyCtrl);
+                return;
+            }
+        }
+    }
 
 
 

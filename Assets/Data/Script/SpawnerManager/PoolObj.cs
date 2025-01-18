@@ -2,7 +2,9 @@ using UnityEngine;
 
 public abstract class PoolObj : LoadComPonentsManager
 {
+    
     [SerializeField] protected DespawnBase despawnBase;
+    public DespawnBase DespawnBase => despawnBase;
     protected override void LoadComponents()
     {
         base.LoadComponents();

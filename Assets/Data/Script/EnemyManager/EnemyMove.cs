@@ -13,7 +13,13 @@ public class EnemyMove : EnemyAbstract
     [SerializeField] protected bool isFinish = false;
     [SerializeField] protected bool canMove = false;
     [SerializeField] protected bool isMoving = false;
-    protected void Start()
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        this.Reborn();
+    }
+    protected override void Start()
     {
         this.LoadEnemyPath();
     }
@@ -25,6 +31,11 @@ public class EnemyMove : EnemyAbstract
     protected virtual void Moving()
     {
         if (!this.canMove) 
+        {
+            this.enemyCtrl.EnemyAgent.isStopped = true;
+            return;
+        }
+        if (this.enemyCtrl.EnemyDamageReceiver.IsDead())
         {
             this.enemyCtrl.EnemyAgent.isStopped = true;
             return;
@@ -62,8 +73,12 @@ public class EnemyMove : EnemyAbstract
     {
         if (this.enemyCtrl.EnemyAgent.velocity.magnitude > 0.1f) this.isMoving = true;
         else this.isMoving = false;
-        this.enemyCtrl.EnemyAnimator.SetBool("IsMoving", this.isMoving);
+        this.enemyCtrl.EnemyAnimator.SetBool("isMoving", this.isMoving);
     }
 
- 
+    protected virtual void Reborn() 
+    {
+        this.isFinish = false;
+        this.currentPoint = null;
+    }
 }

@@ -4,8 +4,23 @@ using UnityEngine;
 
 public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
 {
+    [SerializeField] protected PoolHolder poolHolder;
     [SerializeField] protected int spawnedCount = 0;
     [SerializeField] protected List<T> inPoolObjs;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadPoolHolder();
+    }
+
+    protected virtual void LoadPoolHolder()
+    {
+        if (this.poolHolder != null) return;
+        this.poolHolder = transform.GetComponentInChildren<PoolHolder>();
+        Debug.Log(transform.name + ": Load PoolHolder", gameObject);
+    }
+
     public virtual Transform Spawn(Transform prefabs)
     {
         Transform newObj = Instantiate(prefabs);
@@ -14,12 +29,14 @@ public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
     public virtual T Spawn(T obj)
     {
         T newObj = this.GetObjFromPool(obj);
-        if(newObj == null)
+        if (newObj == null)
         {
             newObj = Instantiate(obj);
             newObj.name = obj.name;
             this.spawnedCount++;
-        }  
+        }
+        if (this.poolHolder != null) newObj.transform.parent = this.poolHolder.transform;
+
         return newObj;
 
     }
@@ -32,12 +49,14 @@ public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
 
     public virtual void Despawn(T obj)
     {
+        if (obj == null) return;
+
         if (obj is MonoBehaviour monoBehaviour)
         {
-            monoBehaviour.gameObject.SetActive(false);
+            this.spawnedCount--;
             this.AddObjectToPool(obj);
+            monoBehaviour.gameObject.SetActive(false);
         }
-
     }
     protected virtual void AddObjectToPool(T obj)
     {
@@ -48,14 +67,13 @@ public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
         this.inPoolObjs.Remove(obj);
     }
 
-    protected virtual T GetObjFromPool(T obj) 
+    protected virtual T GetObjFromPool(T obj)
     {
-        foreach(T objPool in this.inPoolObjs) 
+        foreach (T objPool in this.inPoolObjs)
         {
-
-            if(obj.name == objPool.name) 
+            if (obj.name == objPool.name)
             {
-                this.RemoveObjFromPool(obj);
+                this.RemoveObjFromPool(objPool);
                 return objPool;
             }
         }

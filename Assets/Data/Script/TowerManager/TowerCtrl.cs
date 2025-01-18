@@ -31,12 +31,13 @@ public class TowerCtrl : LoadComPonentsManager
         this.HidePrefabs();
 
     }
+
     protected virtual void LoadModel()
     {
         if (this.model != null) return;
         this.model = transform.Find("Model");
         this.rotator = transform.Find("Model/Rotator");
-        this.model.localPosition = new Vector3(0f, 0.6f, 0f);
+        this.model.localPosition = new Vector3(0f, 1f, 0f);
         Debug.Log(transform.name + ": Load Model ", gameObject);
     }
 

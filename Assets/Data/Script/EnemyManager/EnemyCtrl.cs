@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyCtrl : LoadComPonentsManager
+public class EnemyCtrl : PoolObj
 {
+    [SerializeField] protected EnemyEnum enemyEnum = EnemyEnum.Mutan;
+    public EnemyEnum EnemyEnum => enemyEnum;
     [SerializeField] protected Transform model;
     [SerializeField] protected Animator enemyAnimator;
     public Animator EnemyAnimator => enemyAnimator;
@@ -12,6 +14,13 @@ public class EnemyCtrl : LoadComPonentsManager
 
     [SerializeField] protected TowerTargetable towerTargetable;
     public TowerTargetable TowerTargetable => towerTargetable;
+
+    [SerializeField] protected EnemyDamageReceiver enemyDamageReceiver;
+    public EnemyDamageReceiver EnemyDamageReceiver => enemyDamageReceiver;
+
+    [SerializeField] protected EnemyDespawn enemyDespawn;
+    public EnemyDespawn EnemyDespawn => enemyDespawn;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -19,6 +28,8 @@ public class EnemyCtrl : LoadComPonentsManager
         this.LoadAnimator();
         this.LoadEnemyAgent();
         this.LoadTowerTargetable();
+        this.LoadEnemyDamageReceiver();
+        this.LoadEnemyDespawn();
     }
     protected virtual void LoadModel()
     {
@@ -50,7 +61,18 @@ public class EnemyCtrl : LoadComPonentsManager
         Debug.Log(transform.name + ": Load TowerTargetable", gameObject);
     }
 
+    protected virtual void LoadEnemyDamageReceiver()
+    {
+        if (this.enemyDamageReceiver != null) return;
+        this.enemyDamageReceiver = transform.GetComponentInChildren<EnemyDamageReceiver>();
+        Debug.Log(transform.name + ": Load EnemyDamageReceiver", gameObject);
+    }
 
-
+    protected virtual void LoadEnemyDespawn()
+    {
+        if (this.enemyDespawn != null) return;
+        this.enemyDespawn = transform.GetComponentInChildren<EnemyDespawn>();
+        Debug.Log(transform.name + ": Load EnemyDespawn", gameObject);
+    }
 
 }
