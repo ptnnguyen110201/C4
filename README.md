@@ -21,3 +21,10 @@ C4 Seri của anh SAI. Đây sẽ là móc thời gian mình làm về về proj
   + Hoàn thành được cơ chế các viên đạn, Enemy... bị hủy sẽ được đưa về Holder
 
   * Vì đã học C3 khá nhiều lần nên tiến độ C4 khá nhanh, đã hoàn thành được 50% của dự án trong 4 ngày ^^
+
+- 20/1/2025:
+   + Sử dụng thành công Raycast để Tower không Lookat vào các Enemy đang bị che bởi vách tường.
+   + Áp dụng thành công Model ThirdPerSon vào scene và điều khiển các animation.
+   + Học được cách sử dụng Animation Rigging của Unity để điều khiển các animation của bộ phận cơ thể
+ 
+ * Hơn đã được hơn 50% chặn đường mặc dù chưa gặp khó khăn về phần code nhưng về Animation thì cần trao dồi thêm ^^
