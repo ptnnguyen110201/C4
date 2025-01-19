@@ -46,7 +46,8 @@ public class TowerShooting : TowerAbstract
         if (this.tartgetShooting == null) return;
 
         FirePoint firePoint = this.GetFirePoint();
-        BulletCtrl newBullet =   this.towerCtrl.BulletSpawner.Spawn(this.towerCtrl.BulletCtrl, firePoint.transform.position);
+        BulletCtrl bulletCtrl = this.towerCtrl.BulletPrefabs.GetBulletByEnum(this.towerCtrl.BulletEnum);
+        BulletCtrl newBullet =   this.towerCtrl.BulletSpawner.Spawn(bulletCtrl, firePoint.transform.position);
         Vector3 rotatorDirection = this.towerCtrl.Rotator.transform.forward;
         newBullet.transform.forward = rotatorDirection;
         newBullet.gameObject.SetActive(true);

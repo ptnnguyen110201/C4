@@ -8,10 +8,12 @@ public class TowerTargeting : TowerAbstract
 {
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected Rigidbody rigiBody;
-    [SerializeField] protected EnemyCtrl nearestEnemy;
+    [SerializeField] protected LayerMask obstacleLayerMask;
+    [SerializeField] protected EnemyCtrl nearestEnemy;   
+    public EnemyCtrl NearestEnemy => nearestEnemy;
     [SerializeField] protected List<EnemyCtrl> enemyCtrls;
 
-    public EnemyCtrl NearestEnemy => nearestEnemy;
+
    
     protected virtual void FixedUpdate()
     {
@@ -29,6 +31,7 @@ public class TowerTargeting : TowerAbstract
         float enemyDistance;
         foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
         {
+            if (!this.CanSeeTarget(enemyCtrl)) continue;
             enemyDistance = Vector3.Distance(transform.position, enemyCtrl.transform.position);
             if (enemyDistance < nearestDistance)
             {
@@ -62,6 +65,7 @@ public class TowerTargeting : TowerAbstract
         if (this.enemyCtrls.Count <= 0) return;
         EnemyCtrl enemyCtrl = collider.transform.GetComponentInParent<EnemyCtrl>();
         if (!this.enemyCtrls.Contains(enemyCtrl)) return;
+        if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
         this.enemyCtrls.Remove(enemyCtrl);
     }
     
@@ -75,8 +79,9 @@ public class TowerTargeting : TowerAbstract
     {
         if (this.sphereCollider != null) return;
         this.sphereCollider = transform.GetComponent<SphereCollider>();
-        this.sphereCollider.radius = 10;
+        this.sphereCollider.radius = 20f;
         this.sphereCollider.isTrigger = true;
+        this.sphereCollider.transform.localPosition = new(0f, 1.5f, 0f);
         Debug.Log(transform.name + ": Load SphereCollider", gameObject);
     }
     protected virtual void LoadRigidbody()
@@ -101,7 +106,20 @@ public class TowerTargeting : TowerAbstract
         }
     }
 
-
+    protected virtual bool CanSeeTarget(EnemyCtrl target) 
+    {
+        Vector3 directionToTarget = target.transform.position - transform.position;
+        float distanceToTarget = directionToTarget.magnitude;
+        if (Physics.Raycast(transform.position, directionToTarget, out RaycastHit hitInfo, distanceToTarget, this.obstacleLayerMask))
+        {
+            Vector3 directionToCollider = hitInfo.point - transform.position;
+            float distanceToCollider = directionToCollider.magnitude;
+            Debug.DrawRay(transform.position, directionToCollider.normalized * distanceToCollider, Color.red);
+            return false;
+        }
+        Debug.DrawRay(transform.position, directionToTarget.normalized * distanceToTarget, Color.green);
+        return true;
+    }
 
     /*protected override void OnEnable()
    {

@@ -5,17 +5,20 @@ using UnityEngine.AI;
 
 public class TowerCtrl : LoadComPonentsManager
 {
+    [SerializeField] protected BulletEnum bulletEnum;
+    public BulletEnum BulletEnum => bulletEnum;
     [SerializeField] protected Transform model;
     [SerializeField] protected Transform rotator;
     public Transform Rotator => rotator;
+
     [SerializeField] protected TowerTargeting towerTargeting;
     public TowerTargeting TowerTargeting => towerTargeting;
 
     [SerializeField] protected BulletSpawner bulletSpawner;
     public BulletSpawner BulletSpawner => bulletSpawner;
+    [SerializeField] protected BulletPrefabs bulletPrefabs;
+    public BulletPrefabs BulletPrefabs => bulletPrefabs;
 
-    [SerializeField] protected BulletCtrl bulletCtrl;
-    public BulletCtrl BulletCtrl => bulletCtrl;
     [SerializeField] protected List<FirePoint> firePoints;
     public List<FirePoint> FirePoints => firePoints;
 
@@ -26,9 +29,8 @@ public class TowerCtrl : LoadComPonentsManager
         this.LoadModel();
         this.LoadTowerTargeting();
         this.LoadBulletSpawner();
-        this.LoadBulletCtrl();
+        this.LoadBulletPrefabs();
         this.LoadFirePoint();
-        this.HidePrefabs();
 
     }
 
@@ -53,12 +55,13 @@ public class TowerCtrl : LoadComPonentsManager
         this.bulletSpawner = GameObject.FindAnyObjectByType<BulletSpawner>();
         Debug.Log(transform.name + ": Load BulletSpawner ", gameObject);
     }
-    protected virtual void LoadBulletCtrl()
+    protected virtual void LoadBulletPrefabs()
     {
-        if (this.bulletCtrl != null) return;
-        this.bulletCtrl = transform.GetComponentInChildren<BulletCtrl>(true);
-        Debug.Log(transform.name + ": Load BulletCtrl ", gameObject);
+        if (this.bulletPrefabs != null) return;
+        this.bulletPrefabs = GameObject.FindAnyObjectByType<BulletPrefabs>();
+        Debug.Log(transform.name + ": Load BulletPrefabs ", gameObject);
     }
+
     protected virtual void LoadFirePoint()
     {
         if (this.firePoints.Count > 0) return;
@@ -67,8 +70,4 @@ public class TowerCtrl : LoadComPonentsManager
         Debug.Log(transform.name + "Load FirePoint", gameObject);
     }
 
-    protected virtual void HidePrefabs()
-    {
-        this.bulletCtrl.gameObject.SetActive(false);
-    }
 }

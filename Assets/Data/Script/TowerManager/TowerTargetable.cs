@@ -16,6 +16,7 @@ public class TowerTargetable : LoadComPonentsManager
         if (this.sphereCollider != null) return;
         this.sphereCollider = transform.GetComponent<SphereCollider>();
         this.sphereCollider.radius = 0.5f;
+        this.sphereCollider.transform.localScale = new Vector3(0f, 0.75f, 0f);
         this.sphereCollider.isTrigger = true;
         Debug.Log(transform.name + ": Load SphereCollider", gameObject);
     }

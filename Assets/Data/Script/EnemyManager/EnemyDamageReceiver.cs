@@ -27,9 +27,9 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         if (this.capsuleCollider != null) return;
         this.capsuleCollider = transform.GetComponent<CapsuleCollider>();
-        this.capsuleCollider.center = new Vector3(0f, 0.75f, 0f);
+        this.capsuleCollider.center = new Vector3(0f, 1f, 0f);
         this.capsuleCollider.radius = 0.3f;
-        this.capsuleCollider.height = 1.75f;
+        this.capsuleCollider.height = 1.5f;
         this.capsuleCollider.isTrigger = true;
         Debug.Log(transform.name + ": Load CapsuleCollider", gameObject);
     }
