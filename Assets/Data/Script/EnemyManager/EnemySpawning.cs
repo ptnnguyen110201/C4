@@ -8,15 +8,28 @@ public class EnemySpawning : EnemyManagerAbstract
     [SerializeField] protected int maxSpawn = 10;
     [SerializeField] protected List<EnemyCtrl> spawnedEnemies = new();
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        this.StopCoroutine(this.SpawningCoroutine());
+        this.StopCoroutine(this.RemoveDeadCoroutine());
 
+    }
+    protected override void OnEnable()
+    {
+        base.OnDisable();
+        this.StartCoroutine(this.SpawningCoroutine());
+        this.StartCoroutine(this.RemoveDeadCoroutine());
+
+    }
     protected override void Start()
     {
-        base.Start();
-        this.Invoke(nameof(this.Spawning), this.spawnSpeed);
+      //  base.Start();
+       // this.Invoke(nameof(this.Spawning), this.spawnSpeed);
     }
-    protected virtual void FixedUpdate() 
+    protected virtual void FixedUpdate()
     {
-        this.RemoveDead();
+       // this.RemoveDead();
     }
     protected virtual void Spawning()
     {
@@ -33,6 +46,7 @@ public class EnemySpawning : EnemyManagerAbstract
 
     protected virtual void RemoveDead()
     {
+        if (this.spawnedEnemies.Count <= 0) return;
         foreach (EnemyCtrl enemyCtrl in this.spawnedEnemies)
         {
             if (enemyCtrl.EnemyDamageReceiver.IsDead())
@@ -43,6 +57,31 @@ public class EnemySpawning : EnemyManagerAbstract
         }
     }
 
-
-
+    protected virtual IEnumerator SpawningCoroutine()
+    {
+        while (true)
+        {
+            if (this.spawnedEnemies.Count < this.maxSpawn)
+            {
+                EnemyCtrl prefab = this.enemyManagerCtrl.EnemyPrefabs.GetRandom();
+                EnemyCtrl newEnemy = this.enemyManagerCtrl.EnemySpawner.Spawn(prefab, transform.position);
+                newEnemy.gameObject.SetActive(true);
+                this.spawnedEnemies.Add(newEnemy);
+            }
+            yield return new WaitForSeconds(this.spawnSpeed);
+        }
+    }
+    protected virtual IEnumerator RemoveDeadCoroutine()
+    {
+        while (true)
+        {
+            if (this.spawnedEnemies.Count <= 0) yield return null;
+            for (int i = this.spawnedEnemies.Count - 1; i >= 0; i--)
+            {
+                if (!this.spawnedEnemies[i].EnemyDamageReceiver.IsDead()) continue;
+                this.spawnedEnemies.RemoveAt(i);
+            }
+            yield return new WaitForSeconds(this.spawnSpeed);
+        }
+    }
 }

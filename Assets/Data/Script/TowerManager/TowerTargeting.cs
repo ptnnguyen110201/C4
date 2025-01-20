@@ -9,20 +9,33 @@ public class TowerTargeting : TowerAbstract
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected Rigidbody rigiBody;
     [SerializeField] protected LayerMask obstacleLayerMask;
-    [SerializeField] protected EnemyCtrl nearestEnemy;   
+    [SerializeField] protected EnemyCtrl nearestEnemy;
     public EnemyCtrl NearestEnemy => nearestEnemy;
     [SerializeField] protected List<EnemyCtrl> enemyCtrls;
 
 
-   
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        this.StopCoroutine(this.RemoveDeadEnemyCoroutine());
+        this.StopCoroutine(this.FindNearestCoroutine());
+
+    }
+    protected override void OnEnable()
+    {
+        base.OnDisable();
+        this.StartCoroutine(this.RemoveDeadEnemyCoroutine());
+        this.StartCoroutine(this.FindNearestCoroutine());
+
+    }
     protected virtual void FixedUpdate()
     {
-        this.FindNearest();
-        this.RemoveDeadEnemy();
+        // this.FindNearest();
+        //  this.RemoveDeadEnemy();
     }
     protected virtual void FindNearest()
     {
-        if (this.enemyCtrls.Count <= 0) 
+        if (this.enemyCtrls.Count <= 0)
         {
             this.nearestEnemy = null;
             return;
@@ -40,8 +53,6 @@ public class TowerTargeting : TowerAbstract
             }
         }
     }
-
-
 
 
     protected virtual void OnTriggerEnter(Collider collider)
@@ -68,7 +79,7 @@ public class TowerTargeting : TowerAbstract
         if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
         this.enemyCtrls.Remove(enemyCtrl);
     }
-    
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -93,20 +104,21 @@ public class TowerTargeting : TowerAbstract
     }
 
 
-    protected virtual void RemoveDeadEnemy() 
+    protected virtual void RemoveDeadEnemy()
     {
-        foreach(EnemyCtrl enemyCtrl in this.enemyCtrls) 
+        if (this.enemyCtrls.Count <= 0) return;
+        foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
         {
-            if (enemyCtrl.EnemyDamageReceiver.IsDead()) 
+            if (enemyCtrl.EnemyDamageReceiver.IsDead())
             {
                 if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
-;                this.enemyCtrls.Remove(enemyCtrl);
+                this.enemyCtrls.Remove(enemyCtrl);
                 return;
             }
         }
     }
 
-    protected virtual bool CanSeeTarget(EnemyCtrl target) 
+    protected virtual bool CanSeeTarget(EnemyCtrl target)
     {
         Vector3 directionToTarget = target.transform.position - transform.position;
         float distanceToTarget = directionToTarget.magnitude;
@@ -121,33 +133,41 @@ public class TowerTargeting : TowerAbstract
         return true;
     }
 
-    /*protected override void OnEnable()
-   {
-       this.StartCoroutine(this.FindNearest());
-   }
-   protected override void OnDisable()
-   {
-       this.StartCoroutine(this.FindNearest());
-   }
-   protected IEnumerator FindNearest()
-   {
-       while (true)
-       {
-           if (this.enemyCtrls.Count <= 0) yield return new WaitForSeconds(0.1f);
-           float nearestDistance = Mathf.Infinity;
-           float enemyDistance;
-           foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
-           {
-               enemyDistance = Vector3.Distance(transform.position, enemyCtrl.transform.position);
-               if (enemyDistance < nearestDistance)
-               {
-                   nearestDistance = enemyDistance;
-                   this.nearestEnemy = enemyCtrl;
-               }
-           }
-           yield return new WaitForSeconds(0.1f);
-       }
 
-   }*/
+    protected IEnumerator FindNearestCoroutine()
+    {
+        while (true)
+        {
+            if (this.enemyCtrls.Count <= 0) yield return new WaitForFixedUpdate();
+            float nearestDistance = Mathf.Infinity;
+            float enemyDistance;
+            foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
+            {
+                if (!this.CanSeeTarget(enemyCtrl)) continue;
+                enemyDistance = Vector3.Distance(transform.position, enemyCtrl.transform.position);
+                if (enemyDistance < nearestDistance)
+                {
+                    nearestDistance = enemyDistance;
+                    this.nearestEnemy = enemyCtrl;
+                }
+            }
+            yield return new WaitForFixedUpdate();
+        }
+
+    }
+    protected IEnumerator RemoveDeadEnemyCoroutine()
+    {
+        while (true)
+        {
+            for (int i = this.enemyCtrls.Count - 1; i >= 0; i--)
+            {
+                EnemyCtrl enemyCtrl = this.enemyCtrls[i];
+                if (!enemyCtrl.EnemyDamageReceiver.IsDead()) continue;
+                if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
+                this.enemyCtrls.RemoveAt(i);
+            }
+            yield return new WaitForSeconds(0.1f); 
+        }
+    }
 
 }

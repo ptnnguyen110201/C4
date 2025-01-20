@@ -9,6 +9,20 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
     [SerializeField] protected float timeLife = 7f;
     [SerializeField] protected float currentTime = 7f;
     [SerializeField] protected bool isDespawnByTime = true;
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        this.StopCoroutine(this.DespawnCheckingCoroutine());
+     
+
+    }
+    protected override void OnEnable()
+    {
+        base.OnDisable();
+        this.StartCoroutine(this.DespawnCheckingCoroutine());
+
+    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -31,7 +45,7 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
 
     protected virtual void FixedUpdate() 
     {
-        this.DespawnChecking();
+        //this.DespawnChecking();
     }
 
     protected virtual void DespawnChecking() 
@@ -45,5 +59,25 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
     public override void DespawnObj() 
     {
         this.spawner.Despawn(this.parent);
+    }
+
+    protected virtual IEnumerator DespawnCheckingCoroutine()
+    {
+        while (true)
+        {
+            if (!this.isDespawnByTime)
+            {
+                yield return null; 
+                continue;
+            }
+            this.currentTime -= Time.deltaTime;
+            if (this.currentTime <= 0)
+            {
+                this.DespawnObj();
+                this.currentTime = this.timeLife;
+            }
+
+            yield return null;
+        }
     }
 }
