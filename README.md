@@ -30,9 +30,9 @@ C4 Seri của anh SAI. Đây sẽ là móc thời gian mình làm về về proj
  * Hơn đã được hơn 50% chặn đường mặc dù chưa gặp khó khăn về phần code nhưng về Animation thì cần trao dồi thêm ^^
 
 - 21/1/2025: Hôm nay mình không làm thêm tính năng mới tuy nhiên mình quyết định xem lại tất cả code đã làm và note một số code cần thay đổi lại tại đây 
-   + TowerTargeting: ở đây kiểm tra Enemy tuy nhiên để gọi FixedUpdate thì có lẻ không cần thiết nên đổi sang Courotine.
-   + Despawn, Spawner cũng tương tự nếu giả sử có rất nhiều Obj nếu trên 1k Obj thì nên đổi sang Courotine.
-   + Moving với trường hợp của Bullet FLying, Enemy Moving cũng tương tự thế nên đổi sang Courotine.
+   + TowerTargeting: ở đây kiểm tra Enemy tuy nhiên để gọi FixedUpdate thì có lẻ không cần thiết nên đổi sang Coroutine.
+   + Despawn, Spawner cũng tương tự nếu giả sử có rất nhiều Obj nếu trên 1k Obj thì nên đổi sang Coroutine.
+   + Moving với trường hợp của Bullet FLying, Enemy Moving cũng tương tự thế nên đổi sang Coroutine.
    + Với việc dùng Bullet, Enemy, Path... bằng GetName sẽ khá khó quản lí vì thế nên đổi sang Enum để chọn.
  
   * Hiện tại mình đã làm đến tập 59 của Seri mình muốn note lại 1 số cần thay đổi sau khi kết thúc seri này. Vì thế mình sẽ chậm tiến độ lại một tí để đảm bảo game làm ra sẽ hoàn thiện, hiệu suất tốt.
