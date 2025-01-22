@@ -36,3 +36,11 @@ C4 Seri của anh SAI. Đây sẽ là móc thời gian mình làm về về proj
    + Với việc dùng Bullet, Enemy, Path... bằng GetName sẽ khá khó quản lí vì thế nên đổi sang Enum để chọn.
  
   * Hiện tại mình đã làm đến tập 59 của Seri mình muốn note lại 1 số cần thay đổi sau khi kết thúc seri này. Vì thế mình sẽ chậm tiến độ lại một tí để đảm bảo game làm ra sẽ hoàn thiện, hiệu suất tốt.
+ 
+ - 22 - 23/1/25 : Vì có công việc nên mình gộp chung 2 ngày tổng kết lại những gì mình đã làm được.
+   + Import thành công Model ThirdPerSon và đã thành công tạo hiệu ứng Attack
+   + Ở tập 59 - 60 các bạn phải xem thật kĩ để tránh lỗi animation, kèm theo đó ở phần Rigging của Spine mình đã test và đúng nhất là mixamorig:Spine2 chứ không phải Spine.
+   + Mình đã test thử các coroutine mà mình đã nêu ra tuy hiệu xuất tăng được một tí nhưng về mặt Animation và độ mượt mà trong di chuyển bị chậm đi.
+
+ * Mình nghĩ nên dùng các loại Update, FixedUpdate như a Sai Game đã làm. Vì hiện tại con game chưa quá nặng đến mức phải tối ưu như vậy.
+
