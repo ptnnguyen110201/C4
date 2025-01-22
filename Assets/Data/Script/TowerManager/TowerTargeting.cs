@@ -166,7 +166,7 @@ public class TowerTargeting : TowerAbstract
                 if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
                 this.enemyCtrls.RemoveAt(i);
             }
-            yield return new WaitForSeconds(0.1f); 
+            yield return new WaitForFixedUpdate(); 
         }
     }
 

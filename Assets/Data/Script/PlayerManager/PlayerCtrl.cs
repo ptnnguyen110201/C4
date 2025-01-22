@@ -14,6 +14,9 @@ public class PlayerCtrl : LoadComPonentsManager
     public CrosshairPointer CrosshairPointer => crosshairPointer;
     [SerializeField] protected Rig aimingRig;
     public Rig AimingRig => aimingRig;
+
+    [SerializeField] protected Weapons weapons;
+    public Weapons Weapons => weapons;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -21,6 +24,7 @@ public class PlayerCtrl : LoadComPonentsManager
         this.LoadvThirdPersonController();
         this.LoadvThirdPersonCamera();
         this.LoadCrosshairPointer();
+        this.LoadWeapons();
     }
     protected virtual void LoadRig()
     {
@@ -46,5 +50,10 @@ public class PlayerCtrl : LoadComPonentsManager
         this.crosshairPointer = transform.GetComponentInChildren<CrosshairPointer>();
         Debug.Log(transform.name + ": Load CrosshairPointer", gameObject);
     }
-
+    protected virtual void LoadWeapons()
+    {
+        if (this.weapons != null) return;
+        this.weapons = transform.GetComponentInChildren<Weapons>(true);
+        Debug.Log(transform.name + ": Load Weapons", gameObject);
+    }
 }

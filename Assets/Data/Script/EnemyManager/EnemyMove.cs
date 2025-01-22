@@ -101,13 +101,13 @@ public class EnemyMove : EnemyAbstract
             if (!this.canMove)
             {
                 this.enemyCtrl.EnemyAgent.isStopped = true;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForFixedUpdate();
             }
 
             if (this.enemyCtrl.EnemyDamageReceiver.IsDead())
             {
                 this.enemyCtrl.EnemyAgent.isStopped = true;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForFixedUpdate();
             }
 
             this.FindNextPoint();
@@ -115,13 +115,13 @@ public class EnemyMove : EnemyAbstract
             if (this.currentPoint == null || this.isFinish)
             {
                 this.enemyCtrl.EnemyAgent.isStopped = true;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForFixedUpdate();
             }
 
             this.enemyCtrl.EnemyAgent.isStopped = false;
             this.enemyCtrl.EnemyAgent.SetDestination(this.currentPoint.transform.position);
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -132,7 +132,7 @@ public class EnemyMove : EnemyAbstract
             if (this.enemyCtrl.EnemyAgent.velocity.magnitude > 0.1f) this.isMoving = true;
             else this.isMoving = false;
             this.enemyCtrl.EnemyAnimator.SetBool("isMoving", this.isMoving);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForFixedUpdate();
         }
     }
 }
