@@ -14,24 +14,11 @@ public class TowerTargeting : TowerAbstract
     [SerializeField] protected List<EnemyCtrl> enemyCtrls;
 
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        this.StopCoroutine(this.RemoveDeadEnemyCoroutine());
-        this.StopCoroutine(this.FindNearestCoroutine());
 
-    }
-    protected override void OnEnable()
-    {
-        base.OnDisable();
-        this.StartCoroutine(this.RemoveDeadEnemyCoroutine());
-        this.StartCoroutine(this.FindNearestCoroutine());
-
-    }
     protected virtual void FixedUpdate()
     {
-        // this.FindNearest();
-        //  this.RemoveDeadEnemy();
+         this.FindNearest();
+         this.RemoveDeadEnemy();
     }
     protected virtual void FindNearest()
     {
@@ -57,7 +44,6 @@ public class TowerTargeting : TowerAbstract
 
     protected virtual void OnTriggerEnter(Collider collider)
     {
-
         this.AddEnemy(collider);
     }
     protected virtual void OnTriggerExit(Collider collider)
@@ -68,6 +54,7 @@ public class TowerTargeting : TowerAbstract
     {
         if (collider.name != Const.TOWER_TARGETABLE) return;
         EnemyCtrl enemyCtrl = collider.transform.GetComponentInParent<EnemyCtrl>();
+
         if (enemyCtrl.EnemyDamageReceiver.IsDead()) return;
         this.enemyCtrls.Add(enemyCtrl);
     }
@@ -122,52 +109,20 @@ public class TowerTargeting : TowerAbstract
     {
         Vector3 directionToTarget = target.transform.position - transform.position;
         float distanceToTarget = directionToTarget.magnitude;
+
         if (Physics.Raycast(transform.position, directionToTarget, out RaycastHit hitInfo, distanceToTarget, this.obstacleLayerMask))
         {
             Vector3 directionToCollider = hitInfo.point - transform.position;
             float distanceToCollider = directionToCollider.magnitude;
+
             Debug.DrawRay(transform.position, directionToCollider.normalized * distanceToCollider, Color.red);
             return false;
         }
+
         Debug.DrawRay(transform.position, directionToTarget.normalized * distanceToTarget, Color.green);
         return true;
     }
 
 
-    protected IEnumerator FindNearestCoroutine()
-    {
-        while (true)
-        {
-            if (this.enemyCtrls.Count <= 0) yield return new WaitForFixedUpdate();
-            float nearestDistance = Mathf.Infinity;
-            float enemyDistance;
-            foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
-            {
-                if (!this.CanSeeTarget(enemyCtrl)) continue;
-                enemyDistance = Vector3.Distance(transform.position, enemyCtrl.transform.position);
-                if (enemyDistance < nearestDistance)
-                {
-                    nearestDistance = enemyDistance;
-                    this.nearestEnemy = enemyCtrl;
-                }
-            }
-            yield return new WaitForFixedUpdate();
-        }
-
-    }
-    protected IEnumerator RemoveDeadEnemyCoroutine()
-    {
-        while (true)
-        {
-            for (int i = this.enemyCtrls.Count - 1; i >= 0; i--)
-            {
-                EnemyCtrl enemyCtrl = this.enemyCtrls[i];
-                if (!enemyCtrl.EnemyDamageReceiver.IsDead()) continue;
-                if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
-                this.enemyCtrls.RemoveAt(i);
-            }
-            yield return new WaitForFixedUpdate(); 
-        }
-    }
-
+   
 }

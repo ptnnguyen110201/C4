@@ -3,8 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyCtrl : PoolObj
 {
-    [SerializeField] protected EnemyEnum enemyEnum = EnemyEnum.Mutan;
-    public EnemyEnum EnemyEnum => enemyEnum;
+    [SerializeField] protected EnemyEnum enemyEnum;
     [SerializeField] protected Transform model;
     [SerializeField] protected Animator enemyAnimator;
     public Animator EnemyAnimator => enemyAnimator;
@@ -74,5 +73,7 @@ public class EnemyCtrl : PoolObj
         this.enemyDespawn = transform.GetComponentInChildren<EnemyDespawn>();
         Debug.Log(transform.name + ": Load EnemyDespawn", gameObject);
     }
+
+    public override string GetName() => this.enemyEnum.ToString();
 
 }

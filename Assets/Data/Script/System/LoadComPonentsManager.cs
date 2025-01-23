@@ -31,8 +31,9 @@ public class LoadComPonentsManager : MonoBehaviour
     }
     protected virtual void Reset()
     {
-        this.LoadComponents();
         this.ResetValue();
+        this.LoadComponents();
+
     }
 
 

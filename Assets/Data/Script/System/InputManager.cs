@@ -24,20 +24,28 @@ public class InputManager : Singleton<InputManager>
     }
     protected virtual void CheckAttacking()
     {
+        if (!this.IsAiming())
+        {
+            this.attackHold = 0;
+            this.isAttackLight = false;
+            this.isAttackHeavy = false;
+            return;
+        }
+
         if (Input.GetMouseButton(0)) this.attackHold += Time.deltaTime;
 
-        if(Input.GetMouseButtonUp(0)) 
+        if (Input.GetMouseButtonUp(0))
         {
             this.isAttackLight = this.attackHold < this.attackLightLimit;
             this.attackHold = 0;
         }
-        else 
+        else
         {
             this.isAttackLight = false;
         }
 
         if (this.attackHold > this.attackLightLimit) this.isAttackHeavy = true;
-        else this.isAttackHeavy = false ;
+        else this.isAttackHeavy = false;
     }
 
     public virtual bool IsAttackLight() => this.isAttackLight;

@@ -17,7 +17,7 @@ public class WeaponAbstract : LoadComPonentsManager
     {
         if (this.attackPoint != null) return;
         this.attackPoint = transform.GetComponentInChildren<AttackPoint>();
-        this.attackPoint.transform.localPosition = new Vector3(0.05f, 0.5f, 0f); ;
+        this.attackPoint.transform.localPosition = new Vector3(0.05f, 0.5f, 0f); 
         Debug.Log(transform.name + ": Load AttackPoint", gameObject);
     }
 }

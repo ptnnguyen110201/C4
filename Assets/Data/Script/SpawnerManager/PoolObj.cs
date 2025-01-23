@@ -5,6 +5,7 @@ public abstract class PoolObj : LoadComPonentsManager
     
     [SerializeField] protected DespawnBase despawnBase;
     public DespawnBase DespawnBase => despawnBase;
+    public abstract string GetName();
     protected override void LoadComponents()
     {
         base.LoadComponents();
