@@ -12,8 +12,8 @@ C4 Seri của anh SAI. Đây sẽ là móc thời gian mình làm về về proj
   + Hoàn thành về Spawner Generic cơ bản, Despawn.
   + Hoàn thành được Shooting của Tower.
   * Chú Ý: Trong các tập từ tập 29 - 40 anh Sai có đề cập đến việc cập nhật danh sách Enemy và Lookat Enemy liên tục trong FixedUpdate là không cần thiết nên đã dùng đến Invoke để gọi đệ quy tại thời điểm Start.
-        - Liệu có thể dùng courotine để thay thế ??????????
-        - Liệu Tower khi trở về pool lại được spawn ra thì Invoke có hoạt động tốt. Vì Start chỉ gọi 1 lần duy nhất (***)
+    - Liệu có thể dùng courotine để thay thế ?
+    - Liệu Tower khi trở về pool lại được spawn ra thì Invoke có hoạt động tốt. Vì Start chỉ gọi 1 lần duy nhất !
 
 - 19/1/2025: E43 - E51
   + Hoàn thành cơ chết truyền nhận Damage của Enemy và Bullet.
