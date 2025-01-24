@@ -58,6 +58,11 @@ Chú Ý: Ở E63 - E64 anh Sai có tí chỉnh sử ở hàm Update ở class At
 
 Đó là theo như mình tìm hiểu và mình đã hoàn thành đến tập 66 của Seri trong vòng 1 tuần. Vì có kiến thức của C3 nên đi khá nhanh.^^
 
-
+* 24/1/25 : E67 - E73
+  + Thành công tạo hệ thống inventory khi giết quái nhận được vàng 
+  + Thiết kê thành công UI cơ bản của Inventory.
+  + Cập nhật số lượng và tên Items và Currencies lên UI
+Chú ý: Ở list Item khi anh em dùng Foreach để Add hoặc Remove một Item thì hãy cẩn thận vì nó thay đổi số lượng của list Item sẽ gây lỗi nếu không triển khai tốt. Nên dùng For và RemoveAt nếu anh em không rõ về Foreach.
+Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc làm lại với mình cũng không quá khó khăn. Còn 2 ngày nữa mình sẽ nghỉ tết nên mình sẽ cố gắng Done luôn seri này trong 2 ngày nữa ^^
 
 
