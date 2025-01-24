@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class ItemInventory 
 {
+    public int itemID;
     public ItemProfileSO itemProfileSO;
     public int itemCount;
 }

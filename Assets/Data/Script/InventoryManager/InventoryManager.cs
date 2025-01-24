@@ -11,33 +11,23 @@ public class InventoryManager : Singleton<InventoryManager>
         base.LoadComponents();
         this.LoadInventories();
     }
-
     protected override void Start()
     {
         base.Start();
-        this.TestInventory();
+        Invoke(nameof(this.Test), 1f);
     }
-
-    protected virtual void TestInventory()
+    protected virtual void Test()
     {
-        InventoryCtrl inventoryCtrl = this.GetInventoryByName(InventoryEnum.Currency);
-
+        Invoke(nameof(this.Test), 1f);
         ItemInventory item = new ItemInventory()
         {
-            itemProfileSO = this.GetItemProfileSO(ItemEnum.Gold),
-            itemCount = 10,
-        }; 
-        inventoryCtrl.AddItem(item);
-        inventoryCtrl.AddItem(item);
-        InventoryCtrl inventoryCtr1l = this.GetInventoryByName(InventoryEnum.Items);
-        ItemInventory item1 = new ItemInventory()
-        {
-            itemProfileSO = this.GetItemProfileSO(ItemEnum.Wand),
-            itemCount = 10,
+            itemCount = 1,
+            itemProfileSO = this.GetItemProfileSO(ItemEnum.Wand)
         };
-        inventoryCtr1l.AddItem(item1);
+        this.Items().AddItem(item);
 
     }
+
     protected virtual void LoadInventories()
     {
         if (this.inventories.Count > 0) return;
@@ -55,9 +45,9 @@ public class InventoryManager : Singleton<InventoryManager>
     public virtual InventoryCtrl GetInventoryByName(InventoryEnum inventoryEnum)
     {
         if (this.inventories.Count <= 0) return null;
-        foreach(InventoryCtrl inventory in this.inventories)
+        foreach (InventoryCtrl inventory in this.inventories)
         {
-            if(inventory.GetName() == inventoryEnum) return inventory;
+            if (inventory.GetName() == inventoryEnum) return inventory;
         }
         return null;
     }
@@ -70,4 +60,7 @@ public class InventoryManager : Singleton<InventoryManager>
         }
         return null;
     }
+
+    public virtual InventoryCtrl Currencies() => this.GetInventoryByName(InventoryEnum.Currency);
+    public virtual InventoryCtrl Items() => this.GetInventoryByName(InventoryEnum.Items);
 }

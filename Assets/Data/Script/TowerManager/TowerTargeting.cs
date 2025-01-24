@@ -22,11 +22,7 @@ public class TowerTargeting : TowerAbstract
     }
     protected virtual void FindNearest()
     {
-        if (this.enemyCtrls.Count <= 0)
-        {
-            this.nearestEnemy = null;
-            return;
-        }
+
         float nearestDistance = Mathf.Infinity;
         float enemyDistance;
         foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)

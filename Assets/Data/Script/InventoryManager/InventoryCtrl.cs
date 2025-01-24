@@ -5,14 +5,15 @@ using UnityEngine;
 public abstract class InventoryCtrl : LoadComPonentsManager
 {
     [SerializeField] protected List<ItemInventory> items = new();
-
+    public List<ItemInventory> Items => items;
     public abstract InventoryEnum GetName();
 
     public virtual void AddItem(ItemInventory item)
     {
         ItemInventory itemExist = this.FindItem(item.itemProfileSO.itemEnum);
-        if (itemExist == null)
+        if (!item.itemProfileSO.isStackable || itemExist == null)
         {
+            item.itemID = Random.Range(0, 1000);
             this.items.Add(item);
             return;
         }
