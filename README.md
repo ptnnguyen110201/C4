@@ -38,14 +38,14 @@ C4 Seri của anh SAI. Đây sẽ là móc thời gian mình làm về về proj
  
   * Hiện tại mình đã làm đến tập 59 của Seri mình muốn note lại 1 số cần thay đổi sau khi kết thúc seri này. Vì thế mình sẽ chậm tiến độ lại một tí để đảm bảo game làm ra sẽ hoàn thiện, hiệu suất tốt.
  
-* 22 - 23/1/25 : E60 - E62
+* 22 - 23/1/2025 : E60 - E62
   + Import thành công Model ThirdPerSon và đã thành công tạo hiệu ứng Attack
   + Ở tập 59 - 60 các bạn phải xem thật kĩ để tránh lỗi animation, kèm theo đó ở phần Rigging của Spine mình đã test và đúng nhất là mixamorig:Spine2 chứ không phải Spine.
   + Mình đã test thử các coroutine mà mình đã nêu ra tuy hiệu xuất tăng được một tí nhưng về mặt Animation và độ mượt mà trong di chuyển bị chậm đi.
 
   * Mình nghĩ nên dùng các loại Update, FixedUpdate như a Sai Game đã làm. Vì hiện tại con game chưa quá nặng đến mức phải tối ưu như vậy.
    
-* 24/1/25 : E63 - E66 
+* 24/1/2025 : E63 - E66 
   + Thành công tạo ra hệ thống Shooting và Effect cơ bản.
   + Thiết lập được hệ thông inventory (Currencies , Itmes)
   + Làm quen với Scriptable Object.
@@ -58,7 +58,7 @@ Chú Ý: Ở E63 - E64 anh Sai có tí chỉnh sử ở hàm Update ở class At
 
 Đó là theo như mình tìm hiểu và mình đã hoàn thành đến tập 66 của Seri trong vòng 1 tuần. Vì có kiến thức của C3 nên đi khá nhanh.^^
 
-* 24/1/25 : E67 - E73
+* 25/1/2025 : E67 - E73
   + Thành công tạo hệ thống inventory khi giết quái nhận được vàng 
   + Thiết kê thành công UI cơ bản của Inventory.
   + Cập nhật số lượng và tên Items và Currencies lên UI
@@ -66,4 +66,9 @@ Chú Ý: Ở E63 - E64 anh Sai có tí chỉnh sử ở hàm Update ở class At
   
 Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc làm lại với mình cũng không quá khó khăn. Còn 2 ngày nữa mình sẽ nghỉ tết nên mình sẽ cố gắng Done luôn seri này trong 2 ngày nữa ^^
 
+* 26/1/2025 : E74 - E80
+  + Tạo được hệ thống Add Item, Remove Item trong Inventory và hiển thị ra UI.
+  + Tạo hệ thống ItemDropManager để drop ra các vật phẩm khi tiêu diệt quái.
+  + Tạo hệ thống InputHotkey để bật tắt Inventory... bằng phím tắt
 
+* Chú ý: Anh em nên chú ý ở tập Inventory kĩ một tí vì phải gọi đúng hàm và Enum của chúng phải tương thích với mục đích đặt ra nếu không sẽ xảy ra lỗi khó hiêu ^^
