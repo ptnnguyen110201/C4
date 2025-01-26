@@ -73,7 +73,7 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
 
 * Chú ý: Anh em nên chú ý ở tập Inventory kĩ một tí vì phải gọi đúng hàm và Enum của chúng phải tương thích với mục đích đặt ra nếu không sẽ xảy ra lỗi khó hiêu ^^
 
-* 76/1/2025 : E81 - E85
+* 27/1/2025 : E81 - E85
   + Tạo hệ thống level cho các đối tượng như Player, Tower....
   + Tạo UI hiển thị Exp, Level cho Player, Tower....
   + Hiển thị thanh máu cho Enemy.
