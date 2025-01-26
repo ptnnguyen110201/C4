@@ -72,3 +72,15 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
   + Tạo hệ thống InputHotkey để bật tắt Inventory... bằng phím tắt
 
 * Chú ý: Anh em nên chú ý ở tập Inventory kĩ một tí vì phải gọi đúng hàm và Enum của chúng phải tương thích với mục đích đặt ra nếu không sẽ xảy ra lỗi khó hiêu ^^
+
+* 76/1/2025 : E81 - E85
+  + Tạo hệ thống level cho các đối tượng như Player, Tower....
+  + Tạo UI hiển thị Exp, Level cho Player, Tower....
+  + Hiển thị thanh máu cho Enemy.
+  + Tạo hiệu ứng cho Tower khi shooting.
+
+* Chú ý: Với các code anh Sai bắt buộc tạo ra thì anh em không nên bỏ qua, hãy tạo theo thay vì chỉ thêm hàm vào class khác
+  + Ở KillCount thì mình triển khai theo dạng set Shooter để có thể biết được chính xác khâu súng nào giết quái (C3)
+  + Các class như Text, Slider để hiển thị, vì dùng khác nhiều nơi và tiện dùng cho sau này mình đã áp dụng Generic Class vào abstract để tiện gọi các Controllder.
+
+Chúc anh em có một năm mới tràn đầy hạnh phúc, vui vẻ và có nhiều thăng tiến trong sự nghiệp ^^
