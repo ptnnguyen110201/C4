@@ -10,22 +10,15 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         base.LoadComponents();
         this.LoadInventories();
+        this.LoadItemProfiles();
     }
-    protected override void Start()
-    {
-        base.Start();
-        Invoke(nameof(this.Test), 1f);
-    }
-    protected virtual void Test()
-    {
-        Invoke(nameof(this.Test), 1f);
-        ItemInventory item = new ItemInventory()
-        {
-            itemCount = 1,
-            itemProfileSO = this.GetItemProfileSO(ItemEnum.Wand)
-        };
-        this.Items().AddItem(item);
 
+    protected virtual void LoadItemProfiles() 
+    {
+        if (this.itemProfileSOs.Count > 0) return;
+        ItemProfileSO[] itemProfileSOs = Resources.LoadAll<ItemProfileSO>("/");
+        this.itemProfileSOs = new List<ItemProfileSO>(itemProfileSOs);
+        Debug.Log(transform.name + " Load ItemProfiles", gameObject);
     }
 
     protected virtual void LoadInventories()
@@ -42,7 +35,7 @@ public class InventoryManager : Singleton<InventoryManager>
 
     }
 
-    public virtual InventoryCtrl GetInventoryByName(InventoryEnum inventoryEnum)
+    public virtual InventoryCtrl GetInventoryCodeName(InventoryEnum inventoryEnum)
     {
         if (this.inventories.Count <= 0) return null;
         foreach (InventoryCtrl inventory in this.inventories)
@@ -61,6 +54,6 @@ public class InventoryManager : Singleton<InventoryManager>
         return null;
     }
 
-    public virtual InventoryCtrl Currencies() => this.GetInventoryByName(InventoryEnum.Currency);
-    public virtual InventoryCtrl Items() => this.GetInventoryByName(InventoryEnum.Items);
+    public virtual InventoryCtrl Currencies() => this.GetInventoryCodeName(InventoryEnum.Currencies);
+    public virtual InventoryCtrl Items() => this.GetInventoryCodeName(InventoryEnum.Items);
 }

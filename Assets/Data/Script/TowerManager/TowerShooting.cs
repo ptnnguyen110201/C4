@@ -5,10 +5,11 @@ using UnityEngine;
 public class TowerShooting : TowerAbstract
 {
     [SerializeField] protected int currentFirePoint = 0;
-    [SerializeField] protected float shootSpeed = 1f;
-    [SerializeField] protected float targetLoadSpeed = 1f;
+    [SerializeField] protected float shootSpeed = 0.2f;
+    [SerializeField] protected float targetLoadSpeed = 0.1f;
     [SerializeField] protected float rotationSpeed = 2f;
     [SerializeField] protected EnemyCtrl tartgetShooting;
+
 
     protected override void Start() 
     { 
@@ -46,13 +47,27 @@ public class TowerShooting : TowerAbstract
         if (this.tartgetShooting == null) return;
 
         FirePoint firePoint = this.GetFirePoint();
-        BulletCtrl bulletCtrl = this.towerCtrl.BulletPrefabs.GetBulletByEnum(this.towerCtrl.BulletEnum);
-        BulletCtrl newBullet =   this.towerCtrl.BulletSpawner.Spawn(bulletCtrl, firePoint.transform.position);
         Vector3 rotatorDirection = this.towerCtrl.Rotator.transform.forward;
-        newBullet.transform.forward = rotatorDirection;
+        this.SpawnBullet(firePoint.transform.position, rotatorDirection);
+        this.SpawnMuzzle(firePoint.transform.position, rotatorDirection);
+
+    }
+    protected virtual void SpawnBullet(Vector3 Pos, Vector3 Rot) 
+    {
+        BulletCtrl bulletCtrl = this.towerCtrl.BulletPrefabs.GetBulletByEnum(this.towerCtrl.BulletEnum);  
+ 
+        BulletCtrl newBullet = this.towerCtrl.BulletSpawner.Spawn(bulletCtrl, Pos);
+        newBullet.transform.forward = Rot;   
+        bulletCtrl.SetShooter(this.towerCtrl.transform);
         newBullet.gameObject.SetActive(true);
     }
-
+    protected virtual void SpawnMuzzle(Vector3 spawnPoint, Vector3 rotatorDirection)
+    {
+        EffectCtrl effect = EffectSpawnerCtrl.Instance.EffectSpawner.PoolPrefabs.GetPrefabByName(EffectEnum.TurretMuzzle.ToString());
+        EffectCtrl newEffect = EffectSpawnerCtrl.Instance.EffectSpawner.Spawn(effect, spawnPoint);
+        newEffect.transform.forward = rotatorDirection;
+        newEffect.gameObject.SetActive(true);
+    }
     protected virtual FirePoint GetFirePoint() 
     {
         FirePoint firePoint = this.towerCtrl.FirePoints[this.currentFirePoint];

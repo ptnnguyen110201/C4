@@ -22,7 +22,10 @@ public class TowerCtrl : LoadComPonentsManager
     [SerializeField] protected List<FirePoint> firePoints;
     public List<FirePoint> FirePoints => firePoints;
 
-
+    [SerializeField] protected TowerLevel towerLevel;
+    public TowerLevel TowerLevel => towerLevel;
+    [SerializeField] protected int killCount;
+    public int KillCount => killCount;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -31,7 +34,7 @@ public class TowerCtrl : LoadComPonentsManager
         this.LoadBulletSpawner();
         this.LoadBulletPrefabs();
         this.LoadFirePoint();
-
+        this.LoadTowerLevel();
     }
 
     protected virtual void LoadModel()
@@ -69,5 +72,17 @@ public class TowerCtrl : LoadComPonentsManager
         this.firePoints = point.ToList();
         Debug.Log(transform.name + "Load FirePoint", gameObject);
     }
-
+    protected virtual void LoadTowerLevel()
+    {
+        if (this.towerLevel != null) return;
+        this.towerLevel = transform.GetComponentInChildren<TowerLevel>();
+        Debug.Log(transform.name + "Load FirePoint", gameObject);
+    }
+    public virtual bool Deduct(int Amount)
+    {
+        if (this.killCount < Amount) return false;
+        this.killCount -= Amount;
+        return true;
+    }
+    public virtual void Add() => this.killCount += 1;
 }

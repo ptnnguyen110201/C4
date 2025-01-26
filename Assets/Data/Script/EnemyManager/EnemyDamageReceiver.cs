@@ -6,6 +6,7 @@ public class EnemyDamageReceiver : DamageReceiver
 {
     [SerializeField] protected CapsuleCollider capsuleCollider;
     [SerializeField] protected EnemyCtrl enemyCtrl;
+
     protected override void LoadComponents()
     {
         base.LoadComponents(); 
@@ -33,7 +34,6 @@ public class EnemyDamageReceiver : DamageReceiver
         this.capsuleCollider.isTrigger = true;
         Debug.Log(transform.name + ": Load CapsuleCollider", gameObject);
     }
-
     protected override void OnDead()
     {
         base.OnDead();
@@ -54,12 +54,20 @@ public class EnemyDamageReceiver : DamageReceiver
 
     protected virtual void RewardOnDead() 
     {
-        ItemInventory item = new ItemInventory()
+        for (int i = 0; i < 3; i++)
         {
-            itemProfileSO = InventoryManager.Instance.GetItemProfileSO(ItemEnum.Gold),
-            itemCount = 1
-        };
+            ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 1, transform.position);
+            ItemsDropManager.Instance.DropItems(InventoryEnum.Items, ItemEnum.Wand, 1, transform.position);
+            ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Exp, 5, transform.position);
+        }
 
-        InventoryManager.Instance.Currencies().AddItem(item);
+        if (this.isShooter == null) return;
+        TowerCtrl towerCtrl = this.isShooter.GetComponent<TowerCtrl>();  
+        if (towerCtrl != null) 
+        {
+            towerCtrl.Add();
+        }
+
     }
+
 }

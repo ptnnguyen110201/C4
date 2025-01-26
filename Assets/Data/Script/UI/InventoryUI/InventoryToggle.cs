@@ -7,6 +7,6 @@ public class InventoryToggle : ButtonAbstract
 
     protected override void OnClick()
     {
-        InventoryUI.Instance.Toggle();
+        InventoryUI.Instance.Tooggle();
     }
 }

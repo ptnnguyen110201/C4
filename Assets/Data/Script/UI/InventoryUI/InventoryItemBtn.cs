@@ -15,7 +15,10 @@ public class InventoryItemBtn : ButtonAbstract
         base.LoadComponents();
         this.LoadText();
     }
-
+    protected virtual void FixedUpdate() 
+    {
+        this.ItemUpdating();
+    }
     protected virtual void LoadText()
     {
         if (this.itemName != null && this.itemCount != null) return;
@@ -26,9 +29,19 @@ public class InventoryItemBtn : ButtonAbstract
     public virtual void SetItemInventory(ItemInventory itemInventory)
     {
         this.itemInventory = itemInventory;
-        this.itemName.text = itemInventory.itemProfileSO.itemName.ToString();
-        this.itemCount.text = itemInventory.itemCount.ToString();
 
+    }
+
+     
+    protected virtual void ItemUpdating() 
+    {
+        if (this.itemInventory.itemCount == 0) 
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        this.itemName.text = this.itemInventory.itemProfileSO.itemName.ToString();
+        this.itemCount.text = this.itemInventory.itemCount.ToString();
     }
     protected override void OnClick()
     {

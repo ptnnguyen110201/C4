@@ -4,7 +4,7 @@ using Invector.vCharacterController;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public class PlayerCtrl : LoadComPonentsManager
+public class PlayerCtrl : Singleton<PlayerCtrl>
 {
     [SerializeField] protected vThirdPersonController vThirdPersonController;
     public vThirdPersonController VThirdPersonController => vThirdPersonController;
@@ -17,6 +17,9 @@ public class PlayerCtrl : LoadComPonentsManager
 
     [SerializeField] protected Weapons weapons;
     public Weapons Weapons => weapons;
+
+    [SerializeField] protected PlayerLevel playerLevel;
+    public PlayerLevel PlayerLevel => playerLevel;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -25,6 +28,7 @@ public class PlayerCtrl : LoadComPonentsManager
         this.LoadvThirdPersonCamera();
         this.LoadCrosshairPointer();
         this.LoadWeapons();
+        this.LoadPlayerLevel();
     }
     protected virtual void LoadRig()
     {
@@ -55,5 +59,11 @@ public class PlayerCtrl : LoadComPonentsManager
         if (this.weapons != null) return;
         this.weapons = transform.GetComponentInChildren<Weapons>(true);
         Debug.Log(transform.name + ": Load Weapons", gameObject);
+    }
+    protected virtual void LoadPlayerLevel()
+    {
+        if (this.playerLevel != null) return;
+        this.playerLevel = transform.GetComponentInChildren<PlayerLevel>(true);
+        Debug.Log(transform.name + ": Load PlayerLevel", gameObject);
     }
 }

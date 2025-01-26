@@ -5,18 +5,18 @@ using UnityEngine;
 
 public abstract class TextAbstract : LoadComPonentsManager
 {
-    [SerializeField] protected TextMeshProUGUI goldText;
+    [SerializeField] protected TextMeshProUGUI text;
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadGoldText();
+        this.LoadTextMeshProUGUI();
     }
 
-    protected virtual void LoadGoldText() 
+    protected virtual void LoadTextMeshProUGUI() 
     {
-        if (this.goldText != null) return;
-        this.goldText = transform.GetComponent<TextMeshProUGUI>();
-        Debug.Log(transform.name + ": Load GoldText", gameObject);
+        if (this.text != null) return;
+        this.text = transform.GetComponent<TextMeshProUGUI>();
+        Debug.Log(transform.name + ":Load TextMeshProUGUI", gameObject);
     }
 
 }

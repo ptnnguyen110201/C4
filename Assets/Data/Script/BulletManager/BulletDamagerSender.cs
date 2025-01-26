@@ -12,6 +12,8 @@ public class BulletDamagerSender : DamageSender
 
     protected override void Send(DamageReceiver damageReceiver)
     {
+        if (this.bulletCtrl.Shooter == null) return;
+        damageReceiver.SetIsShooter(this.bulletCtrl.Shooter.transform);
         base.Send(damageReceiver);
         this.Despawn();
     }

@@ -4,23 +4,36 @@ using UnityEngine;
 
 public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
 {
-    [SerializeField] protected PoolHolder poolHolder;
-    [SerializeField] protected int spawnedCount = 0;
+   
+    [SerializeField] protected int spawnedCount = 0; 
+    [SerializeField] protected Transform poolHolder;
     [SerializeField] protected List<T> inPoolObjs;
-
+    [SerializeField] protected PoolPrefabs<T> poolPrefabs;
+    public PoolPrefabs<T> PoolPrefabs => poolPrefabs;
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadPoolHolder();
+        this.LoadPoolPrefabs();
     }
 
     protected virtual void LoadPoolHolder()
     {
         if (this.poolHolder != null) return;
-        this.poolHolder = transform.GetComponentInChildren<PoolHolder>();
+        this.poolHolder = transform.Find("PoolHolder");
+        if(this.poolHolder == null) 
+        {
+            this.poolHolder = new GameObject("PoolHolder").transform;
+            this.poolHolder.parent = transform;
+        }
         Debug.Log(transform.name + ": Load PoolHolder", gameObject);
     }
-
+    protected virtual void LoadPoolPrefabs()
+    {
+        if (this.poolPrefabs != null) return;
+        this.poolPrefabs = GetComponentInChildren<PoolPrefabs<T>>();
+        Debug.Log(transform.name + ": LoadPoolPrefabs", gameObject);
+    }
     public virtual Transform Spawn(Transform prefabs)
     {
         Transform newObj = Instantiate(prefabs);

@@ -6,10 +6,13 @@ using UnityEngine;
 public class DamageReceiver : LoadComPonentsManager
 {
     [SerializeField] protected int maxHp = 10;
+    public int MaxHp => maxHp;
     [SerializeField] protected int currentHp = 10;
+    public int CurrentHp => currentHp;
     [SerializeField] protected bool isDead = false;
     [SerializeField] protected bool isImmotal = false;
-
+    [SerializeField] protected Transform isShooter;
+    public virtual void SetIsShooter(Transform isShooter) => this.isShooter = isShooter;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -38,5 +41,6 @@ public class DamageReceiver : LoadComPonentsManager
     protected virtual void Reborn() 
     {
         this.currentHp = this.maxHp;
+        this.isShooter = null;
     }
 }
