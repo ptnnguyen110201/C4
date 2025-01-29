@@ -80,6 +80,11 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
   + Tạo hiệu ứng cho Tower khi shooting.
 
 
+* Chú ý: Với các code anh Sai bắt buộc tạo ra thì anh em không nên bỏ qua, hãy tạo theo thay vì chỉ thêm hàm vào class khác
+  + Ở KillCount thì mình triển khai theo dạng set Shooter để có thể biết được chính xác khâu súng nào giết quái (C3)
+  + Các class như Text, Slider để hiển thị, vì dùng khác nhiều nơi và tiện dùng cho sau này mình đã áp dụng Generic Class vào abstract để tiện gọi các Controllder.
+
+
 * Kế hoạch sau khi kết thúc hành trình C4: Mình sẽ làm theo các bước của a Sai từ C4 từ những tập 20 ~ tập 95 để có thể làm 1 game hoàn chỉnh 
   + Tập 20 ~ tập 30: Thiết kế thêm map, path( Dự kiến 4 map ) các animation cho các enemy khác nhau( dự kiến 7 ~ 10 Enemy ).
   + Tập 31 ~ tập 40: Tối ưu lại các code gây tốn tài nguyên game không cần thiết mà A Sai đã đề cập trong clip.
@@ -91,11 +96,3 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
   + Tập 91 ~ tập 95: Nâng cấp âm thanh, hiệu ứng của game play.
 
 * Các kế hoạch này mình đề ra dự định sẽ hoàn thành trong 1 tháng. Hiện tại mình chỉ dám đặt ra các kế hoạch như Seri của a Sai dã vẽ ra sẵn vì khả năng, thời gian có giới hạn. Nên mình sẽ hoàn thành hết tất cả kế hoạch đề ra rồi mới đến kế hoạch khác. Mong anh em có thể theo dõi và giúp đỡ mình ^^
-  
-
-
-* Chú ý: Với các code anh Sai bắt buộc tạo ra thì anh em không nên bỏ qua, hãy tạo theo thay vì chỉ thêm hàm vào class khác
-  + Ở KillCount thì mình triển khai theo dạng set Shooter để có thể biết được chính xác khâu súng nào giết quái (C3)
-  + Các class như Text, Slider để hiển thị, vì dùng khác nhiều nơi và tiện dùng cho sau này mình đã áp dụng Generic Class vào abstract để tiện gọi các Controllder.
-
-Chúc anh em có một năm mới tràn đầy hạnh phúc, vui vẻ và có nhiều thăng tiến trong sự nghiệp ^^
