@@ -9,7 +9,7 @@ public class TowerShooting : TowerAbstract
     [SerializeField] protected float targetLoadSpeed = 0.1f;
     [SerializeField] protected float rotationSpeed = 2f;
     [SerializeField] protected EnemyCtrl tartgetShooting;
-
+    [SerializeField] protected SoundEnum shootSound = SoundEnum.MaMachingGun;
 
     protected override void Start() 
     { 
@@ -50,6 +50,7 @@ public class TowerShooting : TowerAbstract
         Vector3 rotatorDirection = this.towerCtrl.Rotator.transform.forward;
         this.SpawnBullet(firePoint.transform.position, rotatorDirection);
         this.SpawnMuzzle(firePoint.transform.position, rotatorDirection);
+        this.SpawnSound(firePoint.transform.position);
 
     }
     protected virtual void SpawnBullet(Vector3 Pos, Vector3 Rot) 
@@ -63,7 +64,7 @@ public class TowerShooting : TowerAbstract
     }
     protected virtual void SpawnMuzzle(Vector3 spawnPoint, Vector3 rotatorDirection)
     {
-        EffectCtrl effect = EffectSpawnerCtrl.Instance.EffectSpawner.PoolPrefabs.GetPrefabByName(EffectEnum.TurretMuzzle.ToString());
+        EffectCtrl effect = EffectSpawnerCtrl.Instance.EffectSpawner.PoolPrefabs.GetPrefabByName(EffectEnum.MuzzleTurret.ToString());
         EffectCtrl newEffect = EffectSpawnerCtrl.Instance.EffectSpawner.Spawn(effect, spawnPoint);
         newEffect.transform.forward = rotatorDirection;
         newEffect.gameObject.SetActive(true);
@@ -74,5 +75,12 @@ public class TowerShooting : TowerAbstract
         this.currentFirePoint++;
         if (this.currentFirePoint == this.towerCtrl.FirePoints.Count) this.currentFirePoint = 0;
         return firePoint;
+    }
+
+    protected virtual void SpawnSound(Vector3 position)
+    {
+        SFXCtrl newSfx = SoundManager.Instance.CreateSfx(this.shootSound);
+        newSfx.transform.position = position;
+        newSfx.gameObject.SetActive(true);
     }
 }

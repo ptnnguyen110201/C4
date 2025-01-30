@@ -33,7 +33,6 @@ public class LoadComPonentsManager : MonoBehaviour
     {
         this.ResetValue();
         this.LoadComponents();
-
     }
 
 

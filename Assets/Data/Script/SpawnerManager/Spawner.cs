@@ -31,7 +31,7 @@ public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
     protected virtual void LoadPoolPrefabs()
     {
         if (this.poolPrefabs != null) return;
-        this.poolPrefabs = GetComponentInChildren<PoolPrefabs<T>>();
+        this.poolPrefabs = transform.GetComponentInChildren<PoolPrefabs<T>>();
         Debug.Log(transform.name + ": LoadPoolPrefabs", gameObject);
     }
     public virtual Transform Spawn(Transform prefabs)

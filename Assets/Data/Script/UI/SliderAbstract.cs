@@ -1,29 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class SliderAbstract<T> : LoadComPonentsManager where T : MonoBehaviour
 {
     [SerializeField] protected Slider slider;
-    [SerializeField] protected T parent;
-
-  
-    protected virtual void FixedUpdate()
+    protected override void Start()
     {
-        this.UpdateSlider();
+        this.slider.onValueChanged.AddListener(OnSliderValueChanged);
     }
-    protected virtual void UpdateSlider() 
+    protected virtual void OnSliderValueChanged(float value)
     {
-        this.slider.value = this.GetValue();
+        //
     }
-    protected abstract float GetValue();
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadSlider();
-        this.LoadCtrl();
     }
 
     protected virtual void LoadSlider()
@@ -32,10 +28,4 @@ public abstract class SliderAbstract<T> : LoadComPonentsManager where T : MonoBe
         this.slider = transform.GetComponent<Slider>();
         Debug.Log(transform.name + ": Load Slider", gameObject);
     }  
-    protected virtual void LoadCtrl()
-    {
-        if (this.parent != null) return;
-        this.parent = transform.GetComponentInParent<T>();
-        Debug.Log(transform.name + "Load Ctrl", gameObject);
-    }
 }

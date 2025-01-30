@@ -12,9 +12,9 @@ public class EffectCtrl : PoolObj
         base.LoadComponents();
         this.SetNameByEnum();
     }
-    protected virtual void SetNameByEnum() 
+    protected virtual void SetNameByEnum()
     {
-        if (this.effectEnum != EffectEnum.None) return;
+        if (this.effectEnum == EffectEnum.None) return;
         this.transform.name = this.effectEnum.ToString();
         Debug.Log(transform.name + " Set NameByEnum ", gameObject);
     }

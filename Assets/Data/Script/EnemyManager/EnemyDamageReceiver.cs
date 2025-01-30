@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 public class EnemyDamageReceiver : DamageReceiver
 {
     [SerializeField] protected CapsuleCollider capsuleCollider;
     [SerializeField] protected EnemyCtrl enemyCtrl;
-
+    [SerializeField] protected SoundEnum DeathSound = SoundEnum.EnemyDeath;
     protected override void LoadComponents()
     {
         base.LoadComponents(); 
@@ -40,7 +41,8 @@ public class EnemyDamageReceiver : DamageReceiver
         this.RewardOnDead();
         this.enemyCtrl.EnemyAnimator.SetBool("isDead", this.isDead);
         this.capsuleCollider.enabled = false;
-        Invoke(nameof(this.Disappear), 3f);
+        this.SpawnSound(transform.position);
+        this.Invoke(nameof(this.Disappear), 3f);
     }
     protected override void OnHurt()
     {
@@ -61,8 +63,8 @@ public class EnemyDamageReceiver : DamageReceiver
             ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Exp, 5, transform.position);
         }
 
-        if (this.isShooter == null) return;
-        TowerCtrl towerCtrl = this.isShooter.GetComponent<TowerCtrl>();  
+        if (this.shooter == null) return;
+        TowerCtrl towerCtrl = this.shooter.GetComponent<TowerCtrl>();  
         if (towerCtrl != null) 
         {
             towerCtrl.Add();
@@ -70,4 +72,25 @@ public class EnemyDamageReceiver : DamageReceiver
 
     }
 
+    public override int Deduct(int Hp)
+    {
+        Vector3 Pos = transform.parent.position;
+        this.SpawnMuzzle(Pos);
+        return base.Deduct(Hp);
+        
+    }
+    protected virtual void SpawnMuzzle(Vector3 spawnPoint)
+    {
+        EffectCtrl effect = EffectSpawnerCtrl.Instance.EffectSpawner.PoolPrefabs.GetPrefabByName(EffectEnum.MuzzleHit.ToString());
+        EffectCtrl newEffect = EffectSpawnerCtrl.Instance.EffectSpawner.Spawn(effect, spawnPoint);
+        newEffect.gameObject.SetActive(true);
+    }
+
+    protected virtual void SpawnSound(Vector3 position)
+    {
+        SFXCtrl newSfx = SoundManager.Instance.CreateSfx(this.DeathSound);
+        newSfx.transform.position = position;
+        newSfx.gameObject.SetActive(true);
+    }
 }
+
