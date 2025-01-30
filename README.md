@@ -96,3 +96,9 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
   + Tập 91 ~ tập 95: Nâng cấp âm thanh, hiệu ứng của game play.
 
 * Các kế hoạch này mình đề ra dự định sẽ hoàn thành trong 1 tháng. Hiện tại mình chỉ dám đặt ra các kế hoạch như Seri của a Sai dã vẽ ra sẵn vì khả năng, thời gian có giới hạn. Nên mình sẽ hoàn thành hết tất cả kế hoạch đề ra rồi mới đến kế hoạch khác. Mong anh em có thể theo dõi và giúp đỡ mình ^^
+
+* 31/1/2025 : E86 - E95
+  + Tạo được hệ thông hiệu ứng cho các hành động như Enemy being hit, Tower Muzzle... (Còn hạn chế và package nên chỉ tạo ít hiệu ứng)
+  + Tạo được hệ thống quản lí âm thanh và áp dụng thành công vào Tower, Enemy, Backgroun Music.
+
+Sau 12 ngày thì mình cùng đã hoàn thành được C4 của A Sai, đã hoàn thành tốt các cơ bản mà trong Seri của anh Sai đã hướng dẫn. Tiếp theo mình sẽ triển khai như kế hoạch đã đề ra ở trên. Để có thể triển khai 1 con game hoàn thiện nhất có thể ^^
