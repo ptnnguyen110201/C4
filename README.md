@@ -72,3 +72,33 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
   + Tạo hệ thống InputHotkey để bật tắt Inventory... bằng phím tắt
 
 * Chú ý: Anh em nên chú ý ở tập Inventory kĩ một tí vì phải gọi đúng hàm và Enum của chúng phải tương thích với mục đích đặt ra nếu không sẽ xảy ra lỗi khó hiêu ^^
+
+* 27/1/2025 : E81 - E85
+  + Tạo hệ thống level cho các đối tượng như Player, Tower....
+  + Tạo UI hiển thị Exp, Level cho Player, Tower....
+  + Hiển thị thanh máu cho Enemy.
+  + Tạo hiệu ứng cho Tower khi shooting.
+
+
+* Chú ý: Với các code anh Sai bắt buộc tạo ra thì anh em không nên bỏ qua, hãy tạo theo thay vì chỉ thêm hàm vào class khác
+  + Ở KillCount thì mình triển khai theo dạng set Shooter để có thể biết được chính xác khâu súng nào giết quái (C3)
+  + Các class như Text, Slider để hiển thị, vì dùng khác nhiều nơi và tiện dùng cho sau này mình đã áp dụng Generic Class vào abstract để tiện gọi các Controllder.
+
+
+* Kế hoạch sau khi kết thúc hành trình C4: Mình sẽ làm theo các bước của a Sai từ C4 từ những tập 20 ~ tập 95 để có thể làm 1 game hoàn chỉnh 
+  + Tập 20 ~ tập 30: Thiết kế thêm map, path( Dự kiến 4 map ) các animation cho các enemy khác nhau( dự kiến 7 ~ 10 Enemy ).
+  + Tập 31 ~ tập 40: Tối ưu lại các code gây tốn tài nguyên game không cần thiết mà A Sai đã đề cập trong clip.
+  + Tập 41 ~ tập 50: Tìm và thiết kế lại các class có khả năng dùng Genergic để code có thể tối ưu nhất có thể.
+  + Tập 51 ~ tập 60: Thiết kế thêm 2 - 3 nhân vật khác nhau với các vai trò khác nhau trong game(dự định sẽ là game MultiPlay).
+  + Tập 61 ~ tập 70: Thêm các weapons, items cần thiết để có thể có nhiều lối chơi đa dạng.
+  + Tập 71 ~ tập 80: Cập nhật thêm phím tắt, hiển thị UI một cách tối ưu dễ hiểu nhất có thể(cơ chế Inventory chung).
+  + Tập 80 ~ tập 90: Tìm kiếm và thêm các hiệu ứng cho skill, hoạt ảnh cho các cơ chế như xây trụ, trụ hết khả năng bắn ...
+  + Tập 91 ~ tập 95: Nâng cấp âm thanh, hiệu ứng của game play.
+
+* Các kế hoạch này mình đề ra dự định sẽ hoàn thành trong 1 tháng. Hiện tại mình chỉ dám đặt ra các kế hoạch như Seri của a Sai dã vẽ ra sẵn vì khả năng, thời gian có giới hạn. Nên mình sẽ hoàn thành hết tất cả kế hoạch đề ra rồi mới đến kế hoạch khác. Mong anh em có thể theo dõi và giúp đỡ mình ^^
+
+* 31/1/2025 : E86 - E95
+  + Tạo được hệ thông hiệu ứng cho các hành động như Enemy being hit, Tower Muzzle... (Còn hạn chế và package nên chỉ tạo ít hiệu ứng)
+  + Tạo được hệ thống quản lí âm thanh và áp dụng thành công vào Tower, Enemy, Backgroun Music.
+
+Sau 12 ngày thì mình cùng đã hoàn thành được C4 của A Sai, đã hoàn thành tốt các cơ bản mà trong Seri của anh Sai đã hướng dẫn. Tiếp theo mình sẽ triển khai như kế hoạch đã đề ra ở trên. Để có thể triển khai 1 con game hoàn thiện nhất có thể ^^
