@@ -811,6 +811,7 @@ MonoBehaviour:
   targetLoadSpeed: 0.1
   rotationSpeed: 2
   tartgetShooting: {fileID: 0}
+  shootSound: 100
 --- !u!1 &8802645986684135342
 GameObject:
   m_ObjectHideFlags: 0

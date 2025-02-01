@@ -7,7 +7,7 @@ public class TowerShooting : TowerAbstract
     [SerializeField] protected int currentFirePoint = 0;
     [SerializeField] protected float shootSpeed = 0.2f;
     [SerializeField] protected float targetLoadSpeed = 0.1f;
-    [SerializeField] protected float rotationSpeed = 2f;
+    [SerializeField] protected float rotationSpeed = 4f;
     [SerializeField] protected EnemyCtrl tartgetShooting;
     [SerializeField] protected SoundEnum shootSound = SoundEnum.MaMachingGun;
 
@@ -24,7 +24,7 @@ public class TowerShooting : TowerAbstract
         this.tartgetShooting = this.towerCtrl.TowerTargeting.NearestEnemy;
     }
 
-    protected virtual void FixedUpdate() 
+    protected virtual void Update() 
     {
         this.Looking();
     }
@@ -35,7 +35,7 @@ public class TowerShooting : TowerAbstract
         Vector3 newDirection = Vector3.RotateTowards(
             this.towerCtrl.Rotator.forward,
             directionToTarget,
-            this.rotationSpeed * Time.fixedDeltaTime,
+            this.rotationSpeed * Time.deltaTime,
             0.0f
         );
 
@@ -58,8 +58,8 @@ public class TowerShooting : TowerAbstract
         BulletCtrl bulletCtrl = this.towerCtrl.BulletPrefabs.GetBulletByEnum(this.towerCtrl.BulletEnum);  
  
         BulletCtrl newBullet = this.towerCtrl.BulletSpawner.Spawn(bulletCtrl, Pos);
-        newBullet.transform.forward = Rot;   
-        bulletCtrl.SetShooter(this.towerCtrl.transform);
+        newBullet.transform.forward = Rot;
+        newBullet.SetShooter(this.towerCtrl.transform);
         newBullet.gameObject.SetActive(true);
     }
     protected virtual void SpawnMuzzle(Vector3 spawnPoint, Vector3 rotatorDirection)

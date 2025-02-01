@@ -19,6 +19,8 @@ public class EnemyCtrl : PoolObj
 
     [SerializeField] protected EnemyDespawn enemyDespawn;
     public EnemyDespawn EnemyDespawn => enemyDespawn;
+    [SerializeField] protected EnemyMove enemyMove;
+    public EnemyMove EnemyMove => enemyMove;
 
     protected override void LoadComponents()
     {
@@ -29,6 +31,7 @@ public class EnemyCtrl : PoolObj
         this.LoadTowerTargetable();
         this.LoadEnemyDamageReceiver();
         this.LoadEnemyDespawn();
+        this.LoadEnemyMove();
     }
     protected virtual void LoadModel()
     {
@@ -72,6 +75,12 @@ public class EnemyCtrl : PoolObj
         if (this.enemyDespawn != null) return;
         this.enemyDespawn = transform.GetComponentInChildren<EnemyDespawn>();
         Debug.Log(transform.name + ": Load EnemyDespawn", gameObject);
+    }
+    protected virtual void LoadEnemyMove()
+    {
+        if (this.enemyMove != null) return;
+        this.enemyMove = transform.GetComponentInChildren<EnemyMove>();
+        Debug.Log(transform.name + ": Load EnemyMove", gameObject);
     }
 
     public override string GetName() => this.enemyEnum.ToString();

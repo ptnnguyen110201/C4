@@ -11,4 +11,10 @@ public class BulletCtrl : PoolObj
     public Transform Shooter => shooter;
 
     public virtual void SetShooter(Transform shooter) => this.shooter = shooter;
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        this.shooter = null;
+    }
 }

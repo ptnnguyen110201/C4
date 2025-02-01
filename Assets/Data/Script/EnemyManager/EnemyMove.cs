@@ -5,8 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyMove : EnemyAbstract
 {
-    [SerializeField] protected PathEnum pathEnum;
     [SerializeField] protected Path enemyPath;
+    public virtual void SetPath(Path path) => this.enemyPath = path;
+
     [SerializeField] protected Point currentPoint;
     [SerializeField] protected float pointDistance = Mathf.Infinity;
     [SerializeField] protected float stopDistance = 1f;
@@ -18,17 +19,12 @@ public class EnemyMove : EnemyAbstract
     {
         base.OnEnable();
         this.Reborn();
-        this.LoadEnemyPath();
-       
-    }
-    protected override void Start()
-    {
-        // this.LoadEnemyPath();
+
     }
     protected virtual void Update()
     {
-          this.Moving();
-          this.CheckMoving();
+        this.Moving();
+        this.CheckMoving();
     }
 
     protected virtual void Moving()
@@ -65,12 +61,7 @@ public class EnemyMove : EnemyAbstract
             if (this.currentPoint == null) this.isFinish = true;
         }
     }
-    protected virtual void LoadEnemyPath()
-    {
-        if (this.enemyPath != null) return;
-        this.enemyPath = PathManager.Instance.GetPath(this.pathEnum);
-        Debug.Log(transform.name + ": Load EnemyPath ", gameObject);
-    }
+  
 
     protected virtual void CheckMoving()
     {
@@ -85,5 +76,5 @@ public class EnemyMove : EnemyAbstract
         this.currentPoint = null;
     }
 
- 
+
 }

@@ -63,8 +63,13 @@ public class EnemySpawning : EnemyManagerAbstract
         {
             if (this.spawnedEnemies.Count < this.maxSpawn)
             {
+                //SpawnPoints spawnPoint = MapManager.Instance.CurrentMap.PathManager.GetSpawnPoint(SpawnPointEnum.SpawnPoint1);
+                SpawnPoints spawnPoint = MapManager.Instance.CurrentMap.PathManager.GetSpawnPoint();
                 EnemyCtrl prefab = this.enemyManagerCtrl.EnemyPrefabs.GetRandom();
-                EnemyCtrl newEnemy = this.enemyManagerCtrl.EnemySpawner.Spawn(prefab, transform.position);
+                EnemyCtrl newEnemy = this.enemyManagerCtrl.EnemySpawner.Spawn(prefab, spawnPoint.SpawnPoint.position);
+
+                Path path = MapManager.Instance.CurrentMap.PathManager.GetPath(spawnPoint.PathEnum);
+                newEnemy.EnemyMove.SetPath(path);
                 newEnemy.gameObject.SetActive(true);
                 this.spawnedEnemies.Add(newEnemy);
             }

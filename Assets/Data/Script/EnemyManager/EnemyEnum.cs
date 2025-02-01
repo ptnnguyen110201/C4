@@ -1,6 +1,12 @@
-public enum EnemyEnum 
+public enum EnemyEnum
 {
-    None = 1,
-    Mutan = 2,
-    Mutant_1 = 3,
+    None = 0,
+    Shaw = 1,
+    Mutant = 2,
+    Warrok = 3,
+    Maw = 4,
+    Avelange = 5,
+    Kurniawan = 6,
+    Pedroso = 7,
+    Yaku = 8,
 }
