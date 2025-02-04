@@ -14,7 +14,7 @@ public class EffectCtrl : PoolObj
     }
     protected virtual void SetNameByEnum()
     {
-        if (this.effectEnum == EffectEnum.None) return;
+        if (this.effectEnum.ToString() == this.transform.name) return;
         this.transform.name = this.effectEnum.ToString();
         Debug.Log(transform.name + " Set NameByEnum ", gameObject);
     }

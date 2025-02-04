@@ -23,7 +23,7 @@ public abstract class SoundCtrl : PoolObj
     }
     protected virtual void SetNameByEnum()
     {
-        if (this.soundEnum == SoundEnum.None) return;
+        if (this.transform.name == this.soundEnum.ToString()) return;
         this.transform.name = this.soundEnum.ToString();
         Debug.Log(transform.name + " Set NameByEnum ", gameObject);
     }

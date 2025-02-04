@@ -43,19 +43,6 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
         Debug.Log(transform.name + "LoadSpawner", gameObject);
     }
 
-    protected virtual void FixedUpdate() 
-    {
-        //this.DespawnChecking();
-    }
-
-    protected virtual void DespawnChecking() 
-    {
-        if (!this.isDespawnByTime) return;
-        this.currentTime -= Time.fixedDeltaTime;
-        if (this.currentTime > 0) return;
-        this.DespawnObj();
-        this.currentTime = this.timeLife;
-    }
     public override void DespawnObj() 
     {
         this.spawner.Despawn(this.parent);

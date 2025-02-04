@@ -6,57 +6,41 @@ public class TowerShooting : TowerAbstract
 {
     [SerializeField] protected int currentFirePoint = 0;
     [SerializeField] protected float shootSpeed = 0.2f;
-    [SerializeField] protected float targetLoadSpeed = 0.1f;
-    [SerializeField] protected float rotationSpeed = 4f;
-    [SerializeField] protected EnemyCtrl tartgetShooting;
     [SerializeField] protected SoundEnum shootSound = SoundEnum.MaMachingGun;
-
-    protected override void Start() 
-    { 
+    protected Coroutine ShootingCoroutine;
+    protected override void Start()
+    {
         base.Start();
-        this.Invoke(nameof(this.TargetLoading), 1f);
-        this.Invoke(nameof(this.Shooting), 1f);
+        this.StartShooting();
     }
 
-    protected virtual void TargetLoading()
+    protected virtual void StartShooting() 
     {
-        this.Invoke(nameof(this.TargetLoading), this.targetLoadSpeed);
-        this.tartgetShooting = this.towerCtrl.TowerTargeting.NearestEnemy;
+        if (this.ShootingCoroutine != null) this.StopCoroutine(this.ShootingRoutine());
+        this.ShootingCoroutine = this.StartCoroutine(this.ShootingRoutine());
     }
-
-    protected virtual void Update() 
+    private IEnumerator ShootingRoutine()
     {
-        this.Looking();
+        yield return new WaitForSeconds(1f); 
+
+        while (true)
+        {
+            if (this.CanShooting())
+            {
+                FirePoint firePoint = GetFirePoint();
+                Vector3 rotatorDirection = towerCtrl.Rotator.transform.forward;
+
+                this.SpawnBullet(firePoint.transform.position, rotatorDirection);
+                this.SpawnMuzzle(firePoint.transform.position, rotatorDirection);
+                this.SpawnSound(firePoint.transform.position);
+            }
+            yield return new WaitForSeconds(this.shootSpeed);
+        }
     }
-    protected virtual void Looking()
+    protected virtual void SpawnBullet(Vector3 Pos, Vector3 Rot)
     {
-        if (this.tartgetShooting == null) return;
-        Vector3 directionToTarget = this.tartgetShooting.TowerTargetable.transform.position - this.towerCtrl.Rotator.position;
-        Vector3 newDirection = Vector3.RotateTowards(
-            this.towerCtrl.Rotator.forward,
-            directionToTarget,
-            this.rotationSpeed * Time.deltaTime,
-            0.0f
-        );
+        BulletCtrl bulletCtrl = this.towerCtrl.BulletPrefabs.GetBulletByEnum(this.towerCtrl.BulletEnum);
 
-        this.towerCtrl.Rotator.rotation = Quaternion.LookRotation(newDirection);
-    }
-    protected virtual void Shooting() 
-    {
-        Invoke(nameof(this.Shooting), this.shootSpeed);
-        if (this.tartgetShooting == null) return;
-
-        FirePoint firePoint = this.GetFirePoint();
-        Vector3 rotatorDirection = this.towerCtrl.Rotator.transform.forward;
-        this.SpawnBullet(firePoint.transform.position, rotatorDirection);
-        this.SpawnMuzzle(firePoint.transform.position, rotatorDirection);
-        this.SpawnSound(firePoint.transform.position);
-
-    }
-    protected virtual void SpawnBullet(Vector3 Pos, Vector3 Rot) 
-    {
-        BulletCtrl bulletCtrl = this.towerCtrl.BulletPrefabs.GetBulletByEnum(this.towerCtrl.BulletEnum);  
- 
         BulletCtrl newBullet = this.towerCtrl.BulletSpawner.Spawn(bulletCtrl, Pos);
         newBullet.transform.forward = Rot;
         newBullet.SetShooter(this.towerCtrl.transform);
@@ -69,7 +53,7 @@ public class TowerShooting : TowerAbstract
         newEffect.transform.forward = rotatorDirection;
         newEffect.gameObject.SetActive(true);
     }
-    protected virtual FirePoint GetFirePoint() 
+    protected virtual FirePoint GetFirePoint()
     {
         FirePoint firePoint = this.towerCtrl.FirePoints[this.currentFirePoint];
         this.currentFirePoint++;
@@ -83,4 +67,6 @@ public class TowerShooting : TowerAbstract
         newSfx.transform.position = position;
         newSfx.gameObject.SetActive(true);
     }
+
+    protected virtual bool CanShooting() => this.towerCtrl.TowerLooking.isLooking();
 }

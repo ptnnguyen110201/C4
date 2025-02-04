@@ -7,55 +7,28 @@ public class EnemySpawning : EnemyManagerAbstract
     [SerializeField] protected float spawnSpeed = 1.0f;
     [SerializeField] protected int maxSpawn = 10;
     [SerializeField] protected List<EnemyCtrl> spawnedEnemies = new();
+    protected Coroutine EnemySpawnCoroutine;
+    protected Coroutine EnemyRemoveDeadCoroutine;
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        this.StopCoroutine(this.SpawningCoroutine());
-        this.StopCoroutine(this.RemoveDeadCoroutine());
-
-    }
-    protected override void OnEnable()
-    {
-        base.OnDisable();
-        this.StartCoroutine(this.SpawningCoroutine());
-        this.StartCoroutine(this.RemoveDeadCoroutine());
-
-    }
     protected override void Start()
     {
-      //  base.Start();
-       // this.Invoke(nameof(this.Spawning), this.spawnSpeed);
+        this.StartEnemySpawning();
+        this.StartEnemyRemoving();
     }
-    protected virtual void FixedUpdate()
+
+
+    protected virtual void StartEnemySpawning() 
     {
-       // this.RemoveDead();
+        if (this.EnemySpawnCoroutine != null) this.StopCoroutine(this.SpawningCoroutine());
+        this.EnemySpawnCoroutine = this.StartCoroutine(this.SpawningCoroutine());
     }
-    protected virtual void Spawning()
+
+    protected virtual void StartEnemyRemoving() 
     {
-        this.Invoke(nameof(this.Spawning), this.spawnSpeed);
-
-        if (this.spawnedEnemies.Count > this.maxSpawn) return;
-
-        EnemyCtrl prefab = this.enemyManagerCtrl.EnemyPrefabs.GetRandom();
-        EnemyCtrl newEnemy = this.enemyManagerCtrl.EnemySpawner.Spawn(prefab, transform.position);
-        newEnemy.gameObject.SetActive(true);
-
-        this.spawnedEnemies.Add(newEnemy);
+        if (this.EnemyRemoveDeadCoroutine != null) this.StopCoroutine(this.RemoveDeadCoroutine());
+        this.EnemyRemoveDeadCoroutine = this.StartCoroutine(this.RemoveDeadCoroutine());
     }
 
-    protected virtual void RemoveDead()
-    {
-        if (this.spawnedEnemies.Count <= 0) return;
-        foreach (EnemyCtrl enemyCtrl in this.spawnedEnemies)
-        {
-            if (enemyCtrl.EnemyDamageReceiver.IsDead())
-            {
-                this.spawnedEnemies.Remove(enemyCtrl);
-                return;
-            }
-        }
-    }
 
     protected virtual IEnumerator SpawningCoroutine()
     {
@@ -63,7 +36,6 @@ public class EnemySpawning : EnemyManagerAbstract
         {
             if (this.spawnedEnemies.Count < this.maxSpawn)
             {
-                //SpawnPoints spawnPoint = MapManager.Instance.CurrentMap.PathManager.GetSpawnPoint(SpawnPointEnum.SpawnPoint1);
                 SpawnPoints spawnPoint = MapManager.Instance.CurrentMap.PathManager.GetSpawnPoint();
                 EnemyCtrl prefab = this.enemyManagerCtrl.EnemyPrefabs.GetRandom();
                 EnemyCtrl newEnemy = this.enemyManagerCtrl.EnemySpawner.Spawn(prefab, spawnPoint.SpawnPoint.position);
@@ -80,13 +52,8 @@ public class EnemySpawning : EnemyManagerAbstract
     {
         while (true)
         {
-            if (this.spawnedEnemies.Count <= 0) yield return null;
-            for (int i = this.spawnedEnemies.Count - 1; i >= 0; i--)
-            {
-                if (!this.spawnedEnemies[i].EnemyDamageReceiver.IsDead()) continue;
-                this.spawnedEnemies.RemoveAt(i);
-            }
-            yield return new WaitForSeconds(this.spawnSpeed);
+            if (this.spawnedEnemies.Count > 0) this.spawnedEnemies.RemoveAll(enemy => enemy.EnemyDamageReceiver.IsDead());
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

@@ -17,18 +17,23 @@ public class TowerTargeting : TowerAbstract
 
     protected virtual void FixedUpdate()
     {
-         this.FindNearest();
-         this.RemoveDeadEnemy();
+        this.RemoveDeadEnemy();
+        this.FindNearest();
     }
     protected virtual void FindNearest()
     {
+        if (this.enemyCtrls.Count <= 0)
+        {
+            this.nearestEnemy = null;
+            return;
+        }
 
         float nearestDistance = Mathf.Infinity;
         float enemyDistance;
         foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
         {
             if (!this.CanSeeTarget(enemyCtrl)) continue;
-            enemyDistance = Vector3.Distance(transform.position, enemyCtrl.transform.position);
+            enemyDistance = Vector3.SqrMagnitude(transform.position - enemyCtrl.transform.position);
             if (enemyDistance < nearestDistance)
             {
                 nearestDistance = enemyDistance;
@@ -36,7 +41,6 @@ public class TowerTargeting : TowerAbstract
             }
         }
     }
-
 
     protected virtual void OnTriggerEnter(Collider collider)
     {
@@ -90,15 +94,12 @@ public class TowerTargeting : TowerAbstract
     protected virtual void RemoveDeadEnemy()
     {
         if (this.enemyCtrls.Count <= 0) return;
-        foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
+        this.enemyCtrls.RemoveAll(enemyCtrl =>
         {
-            if (enemyCtrl.EnemyDamageReceiver.IsDead())
-            {
-                if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
-                this.enemyCtrls.Remove(enemyCtrl);
-                return;
-            }
-        }
+            if (!enemyCtrl.EnemyDamageReceiver.IsDead()) return false;
+            if (this.nearestEnemy == enemyCtrl) this.nearestEnemy = null;
+            return true;
+        });
     }
 
     protected virtual bool CanSeeTarget(EnemyCtrl target)
@@ -120,5 +121,5 @@ public class TowerTargeting : TowerAbstract
     }
 
 
-   
+
 }

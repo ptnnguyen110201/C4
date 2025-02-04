@@ -14,6 +14,9 @@ public class TowerCtrl : LoadComPonentsManager
     [SerializeField] protected TowerTargeting towerTargeting;
     public TowerTargeting TowerTargeting => towerTargeting;
 
+    [SerializeField] protected TowerLooking towerLooking;
+    public TowerLooking TowerLooking => towerLooking;
+
     [SerializeField] protected BulletSpawner bulletSpawner;
     public BulletSpawner BulletSpawner => bulletSpawner;
     [SerializeField] protected BulletPrefabs bulletPrefabs;
@@ -31,6 +34,7 @@ public class TowerCtrl : LoadComPonentsManager
         base.LoadComponents();
         this.LoadModel();
         this.LoadTowerTargeting();
+        this.LoadTowerLooking();
         this.LoadBulletSpawner();
         this.LoadBulletPrefabs();
         this.LoadFirePoint();
@@ -46,11 +50,17 @@ public class TowerCtrl : LoadComPonentsManager
         Debug.Log(transform.name + ": Load Model ", gameObject);
     }
 
+    protected virtual void LoadTowerLooking()
+    {
+        if (this.towerLooking != null) return;
+        this.towerLooking = transform.GetComponentInChildren<TowerLooking>();
+        Debug.Log(transform.name + ": Load TowerLooking ", gameObject);
+    }
     protected virtual void LoadTowerTargeting()
     {
         if (this.towerTargeting != null) return;
         this.towerTargeting = transform.GetComponentInChildren<TowerTargeting>();
-        Debug.Log(transform.name + ": Load TowerTargeting ", gameObject);
+        Debug.Log(transform.name + ": Load TowerTargeting", gameObject);
     }
     protected virtual void LoadBulletSpawner()
     {
