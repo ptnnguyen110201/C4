@@ -101,6 +101,7 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
   + Tạo được hệ thông hiệu ứng cho các hành động như Enemy being hit, Tower Muzzle... (Còn hạn chế và package nên chỉ tạo ít hiệu ứng)
   + Tạo được hệ thống quản lí âm thanh và áp dụng thành công vào Tower, Enemy, Backgroun Music.
  
+Sau 12 ngày thì mình cùng đã hoàn thành được C4 của A Sai, đã hoàn thành tốt các cơ bản mà trong Seri của anh Sai đã hướng dẫn. Tiếp theo mình sẽ triển khai như kế hoạch đã đề ra ở trên. Để có thể triển khai 1 con game hoàn thiện nhất có thể ^^
 
 * Mục tiêu 1: Tập 20 ~ tập 30: Thiết kế thêm map, path( Dự kiến 4 map ) các animation cho các enemy khác nhau( dự kiến 7 ~ 10 Enemy )
   + Đã thiết kê thành công 4 Map :
@@ -112,4 +113,18 @@ Các hệ thông này đã được anh Sai hướng dẫn trong C3 nên việc 
     + Zobies : Quái vật nhỏ, mảnh mai, khó bắn trúng, khả năng tăng tốc khi máu thấp, miễn nhiễm sát thương trong thời gian ngắn... sẽ được phát triển trong tương lai
   + Thiết kế SpawnPoint cho Enemy, Enemy dựa vào SpawnPoint để tìm ra Path di chuyển hợp lí. 
 Mục tiêu đã hoàn thành về việc thiết lập các Enemy, Map và Spawn Point để hỗ trợ các Wave quái phát triển sau này.
-Sau 12 ngày thì mình cùng đã hoàn thành được C4 của A Sai, đã hoàn thành tốt các cơ bản mà trong Seri của anh Sai đã hướng dẫn. Tiếp theo mình sẽ triển khai như kế hoạch đã đề ra ở trên. Để có thể triển khai 1 con game hoàn thiện nhất có thể ^^
+
+* Mục tiêu 2: Tập 31 ~ tập 40: Tối ưu lại các code gây tốn tài nguyên game không cần thiết mà A Sai đã đề cập trong clip.
+  + TowerShooting
+  + TowerTargeting
+  + TowerLooking (Mình tự viết thêm)
+  + EnemySpawning 
+  + Despawn
+    
+- Các hàm ở trên mình đã có tham khảo GPT và một vài nguồn trên mạng, việc dùng Update và Fixed Update thật sự là không cần thiết. Thay vào đó chỉ nên gắn coroutine cho nó và kiểm tra điều kiện và thực thi hành động. 
+- Mình đã thêm vào một ít code và tự viết thêm cho Tower 1 class là TowerLooking vì mình muốn sau này sẽ có 1 loại súng có thể ngắm bắn nhiều mục tiêu thay vì là 1 một mục tiêu nên đã tách nó ra riêng.
+
+Mục tiêu đã hoàn thành việc chỉnh sửa một vài class cơ bản để tránh lãng phí tài nguyên. Tuy nhiên còn rất nhiều class để tối ưu nhưng hiện tại thực sự chưa cần thiết nên mình chỉ tối ưu đến đây 
+
+
+
