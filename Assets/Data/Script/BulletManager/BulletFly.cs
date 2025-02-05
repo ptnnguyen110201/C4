@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletFly : BulletAbstract
+public class BulletFly : GenericMove<BulletCtrl>
 {
-    [SerializeField] protected float speed = 10f;
 
-   
-    protected virtual void Update()
+    protected override void Moving()
     {
         transform.parent.Translate(this.speed * Time.deltaTime * Vector3.forward);
+    }
+
+    protected virtual void Update()
+    {
+        this.Moving();
     }
   
 }

@@ -6,7 +6,7 @@ public abstract class LevelByItem : LevelAbstract
 {
     [SerializeField] protected ItemInventory playerExp;
   
-    protected override int GetCurrentExp()
+    public override int GetCurrentExp()
     {
         if (this.GetPlayerExp() == null) return 0;
         return this.GetPlayerExp().itemCount;

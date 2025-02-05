@@ -7,7 +7,7 @@ public class TowerExpText : LevelText<TowerCtrl>
 
     protected override void UpdatingLevel()
     {
-        this.text.text = $"{this.parent.KillCount}/{this.parent.TowerLevel.NextLevelExp}";
+        this.text.text = $"{this.parent.TowerLevel.CurrentExp}/{this.parent.TowerLevel.NextLevelExp}";
 
     }
 }

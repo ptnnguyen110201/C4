@@ -7,9 +7,11 @@ public abstract class LevelAbstract : LoadComPonentsManager
     [SerializeField] protected int currentLevel = 1;
     public int CurrentLevel => currentLevel;
     [SerializeField] protected int maxLevel = 100;
+    [SerializeField] protected int currentExp;
+    public int CurrentExp => currentExp;
     [SerializeField] protected int nextLevelExp;
     public int NextLevelExp => nextLevelExp;
-    protected abstract int GetCurrentExp();
+    public abstract int GetCurrentExp();
     protected abstract bool DeductExp(int exp);
     protected virtual void FixedUpdate() 
     {

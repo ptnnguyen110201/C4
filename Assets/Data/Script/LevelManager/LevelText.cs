@@ -17,7 +17,7 @@ public abstract class LevelText<T> : Text3DAbstract where T : MonoBehaviour
         this.parent = transform.GetComponentInParent<T>();
         Debug.Log(transform.name + "Load Ctrl", gameObject);
     }
-    protected virtual void FixedUpdate()
+    protected void LateUpdate()
     {
         this.UpdatingLevel();
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMove : EnemyAbstract
+public class EnemyMove : GenericMove<EnemyCtrl>
 {
     [SerializeField] protected Path enemyPath;
     public virtual void SetPath(Path path) => this.enemyPath = path;
@@ -27,27 +27,27 @@ public class EnemyMove : EnemyAbstract
         this.CheckMoving();
     }
 
-    protected virtual void Moving()
+    protected override void Moving()
     {
         if (!this.canMove)
         {
-            this.enemyCtrl.EnemyAgent.isStopped = true;
+            this.parent.EnemyAgent.isStopped = true;
             return;
         }
-        if (this.enemyCtrl.EnemyDamageReceiver.IsDead())
+        if (this.parent.EnemyDamageReceiver.IsDead())
         {
-            this.enemyCtrl.EnemyAgent.isStopped = true;
+            this.parent.EnemyAgent.isStopped = true;
             return;
         }
         this.FindNextPoint();
 
         if (this.currentPoint == null || this.isFinish)
         {
-            this.enemyCtrl.EnemyAgent.isStopped = true;
+            this.parent.EnemyAgent.isStopped = true;
             return;
         }
-        this.enemyCtrl.EnemyAgent.isStopped = false;
-        this.enemyCtrl.EnemyAgent.SetDestination(this.currentPoint.transform.position);
+        this.parent.EnemyAgent.isStopped = false;
+        this.parent.EnemyAgent.SetDestination(this.currentPoint.transform.position);
     }
 
     protected virtual void FindNextPoint()
@@ -65,9 +65,9 @@ public class EnemyMove : EnemyAbstract
 
     protected virtual void CheckMoving()
     {
-        if (this.enemyCtrl.EnemyAgent.velocity.magnitude > 0.1f) this.isMoving = true;
+        if (this.parent.EnemyAgent.velocity.magnitude > 0.1f) this.isMoving = true;
         else this.isMoving = false;
-        this.enemyCtrl.EnemyAnimator.SetBool("isMoving", this.isMoving);
+        this.parent.EnemyAnimator.SetBool("isMoving", this.isMoving);
     }
 
     protected virtual void Reborn()

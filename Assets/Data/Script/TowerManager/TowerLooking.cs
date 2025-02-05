@@ -5,14 +5,14 @@ using UnityEngine;
 public class TowerLooking : TowerAbstract
 {
     [SerializeField] protected float targetLoadSpeed = 0.01f;
-    [SerializeField] protected float rotationSpeed = 4f;
-    [SerializeField] protected EnemyCtrl targetShooting;
+    [SerializeField] protected float rotationSpeed = 2f;
+    [SerializeField] protected EnemyCtrl targetLooking;
     protected Coroutine LookingCoroutine;
 
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         this.StartTargetLoading();
     }
     private void StartTargetLoading()
@@ -25,17 +25,25 @@ public class TowerLooking : TowerAbstract
         while (true)
         {
             yield return new WaitForSeconds(this.targetLoadSpeed);
-            this.targetShooting = towerCtrl.TowerTargeting.NearestEnemy;
+            this.targetLooking = towerCtrl.TowerTargeting.NearestEnemy;
         }
     }
+
     protected virtual void Update()
     {
-        if (this.targetShooting != null) this.Looking();
+        if (!this.isActive()) 
+        {
+            this.SetIdleRotation();
+            return;
+        }
+
+        this.Looking();
     }
+
     protected virtual void Looking()
     {
-        if (this.targetShooting == null) return;
-        Vector3 directionToTarget = this.targetShooting.TowerTargetable.transform.position - this.towerCtrl.Rotator.position;
+        if (!this.isLooking()) return;
+        Vector3 directionToTarget = this.targetLooking.TowerTargetable.transform.position - this.towerCtrl.Rotator.position;
         Vector3 newDirection = Vector3.RotateTowards(
             this.towerCtrl.Rotator.forward,
             directionToTarget,
@@ -44,10 +52,36 @@ public class TowerLooking : TowerAbstract
         );
 
         Quaternion targetRotation = Quaternion.LookRotation(newDirection);
-        Vector3 eulerAngles = targetRotation.eulerAngles;
-        eulerAngles.x = Mathf.Clamp(eulerAngles.x, 15f, 30f);
-        this.towerCtrl.Rotator.rotation = Quaternion.Euler(eulerAngles);
+        Vector3 adjustedEulerAngles = targetRotation.eulerAngles;
+        adjustedEulerAngles.x = Mathf.Clamp(adjustedEulerAngles.x, 15f, 30f);
+        this.towerCtrl.Rotator.rotation = Quaternion.Euler(adjustedEulerAngles);
     }
 
-    public virtual bool isLooking() => this.targetShooting != null;
+    protected virtual void SetIdleRotation()
+    {
+        Vector3 currentDirection = this.towerCtrl.Rotator.forward;
+        Vector3 targetDirection = new Vector3(currentDirection.x, -1, currentDirection.z);
+
+        Vector3 newDirection = Vector3.RotateTowards(
+            currentDirection,
+            targetDirection,
+            this.rotationSpeed * Time.deltaTime, 
+            0.0f
+        );
+
+        Quaternion targetRotation = Quaternion.LookRotation(newDirection);
+        this.towerCtrl.Rotator.rotation = targetRotation;
+    }
+
+
+
+    public virtual bool isLooking()
+    {
+        if (this.targetLooking == null) return false;
+        return true;
+    }
+    protected virtual bool isActive() => this.towerCtrl.TowerDurability.IsActive;
+
+
+
 }

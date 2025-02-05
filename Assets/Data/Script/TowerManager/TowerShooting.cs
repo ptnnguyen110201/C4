@@ -11,7 +11,7 @@ public class TowerShooting : TowerAbstract
     protected override void Start()
     {
         base.Start();
-        this.StartShooting();
+        this.StartShooting(); 
     }
 
     protected virtual void StartShooting() 

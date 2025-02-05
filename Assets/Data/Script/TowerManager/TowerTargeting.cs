@@ -27,7 +27,11 @@ public class TowerTargeting : TowerAbstract
             this.nearestEnemy = null;
             return;
         }
-
+        if (!this.isActive())
+        {
+            this.nearestEnemy = null;
+            return;
+        }
         float nearestDistance = Mathf.Infinity;
         float enemyDistance;
         foreach (EnemyCtrl enemyCtrl in this.enemyCtrls)
@@ -119,7 +123,5 @@ public class TowerTargeting : TowerAbstract
         Debug.DrawRay(transform.position, directionToTarget.normalized * distanceToTarget, Color.green);
         return true;
     }
-
-
-
+    protected virtual bool isActive() => this.towerCtrl.TowerDurability.IsActive;
 }

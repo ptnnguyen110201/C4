@@ -15,18 +15,23 @@ public class TowerCtrl : LoadComPonentsManager
     public TowerTargeting TowerTargeting => towerTargeting;
 
     [SerializeField] protected TowerLooking towerLooking;
-    public TowerLooking TowerLooking => towerLooking;
+    public TowerLooking TowerLooking => towerLooking;  
 
+    [SerializeField] protected TowerLevel towerLevel;
+    public TowerLevel TowerLevel => towerLevel;
+    [SerializeField] protected TowerDurability towerDurability;
+    public TowerDurability TowerDurability => towerDurability;
     [SerializeField] protected BulletSpawner bulletSpawner;
     public BulletSpawner BulletSpawner => bulletSpawner;
+
+ 
     [SerializeField] protected BulletPrefabs bulletPrefabs;
     public BulletPrefabs BulletPrefabs => bulletPrefabs;
 
     [SerializeField] protected List<FirePoint> firePoints;
     public List<FirePoint> FirePoints => firePoints;
 
-    [SerializeField] protected TowerLevel towerLevel;
-    public TowerLevel TowerLevel => towerLevel;
+
     [SerializeField] protected int killCount;
     public int KillCount => killCount;
     protected override void LoadComponents()
@@ -34,11 +39,13 @@ public class TowerCtrl : LoadComPonentsManager
         base.LoadComponents();
         this.LoadModel();
         this.LoadTowerTargeting();
-        this.LoadTowerLooking();
+        this.LoadTowerLooking();  
+        this.LoadTowerLevel();
+        this.LoadTowerDurability();
         this.LoadBulletSpawner();
         this.LoadBulletPrefabs();
         this.LoadFirePoint();
-        this.LoadTowerLevel();
+  
     }
 
     protected virtual void LoadModel()
@@ -62,6 +69,18 @@ public class TowerCtrl : LoadComPonentsManager
         this.towerTargeting = transform.GetComponentInChildren<TowerTargeting>();
         Debug.Log(transform.name + ": Load TowerTargeting", gameObject);
     }
+    protected virtual void LoadTowerLevel()
+    {
+        if (this.towerLevel != null) return;
+        this.towerLevel = transform.GetComponentInChildren<TowerLevel>();
+        Debug.Log(transform.name + "Load TowerLevel", gameObject);
+    }
+    protected virtual void LoadTowerDurability()
+    {
+        if (this.towerDurability != null) return;
+        this.towerDurability = transform.GetComponentInChildren<TowerDurability>();
+        Debug.Log(transform.name + "Load TowerDurability ", gameObject);
+    }
     protected virtual void LoadBulletSpawner()
     {
         if (this.bulletSpawner != null) return;
@@ -82,12 +101,7 @@ public class TowerCtrl : LoadComPonentsManager
         this.firePoints = point.ToList();
         Debug.Log(transform.name + "Load FirePoint", gameObject);
     }
-    protected virtual void LoadTowerLevel()
-    {
-        if (this.towerLevel != null) return;
-        this.towerLevel = transform.GetComponentInChildren<TowerLevel>();
-        Debug.Log(transform.name + "Load FirePoint", gameObject);
-    }
+
     public virtual bool Deduct(int Amount)
     {
         if (this.killCount < Amount) return false;
