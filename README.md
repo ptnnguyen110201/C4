@@ -123,8 +123,22 @@ Mục tiêu đã hoàn thành về việc thiết lập các Enemy, Map và Spaw
     
 - Các hàm ở trên mình đã có tham khảo GPT và một vài nguồn trên mạng, việc dùng Update và Fixed Update thật sự là không cần thiết. Thay vào đó chỉ nên gắn coroutine cho nó và kiểm tra điều kiện và thực thi hành động. 
 - Mình đã thêm vào một ít code và tự viết thêm cho Tower 1 class là TowerLooking vì mình muốn sau này sẽ có 1 loại súng có thể ngắm bắn nhiều mục tiêu thay vì là 1 một mục tiêu nên đã tách nó ra riêng.
+Mục tiêu đã hoàn thành việc chỉnh sửa một vài class cơ bản để tránh lãng phí tài nguyên. Tuy nhiên còn rất nhiều class để tối ưu nhưng hiện tại thực sự chưa cần thiết nên mình chỉ tối ưu đến đây
 
-Mục tiêu đã hoàn thành việc chỉnh sửa một vài class cơ bản để tránh lãng phí tài nguyên. Tuy nhiên còn rất nhiều class để tối ưu nhưng hiện tại thực sự chưa cần thiết nên mình chỉ tối ưu đến đây 
+* Mục tiêu 3: Tập 41 ~ tập 50: Tìm và thiết kế lại các class có khả năng dùng Genergic để code có thể tối ưu nhất có thể
+   + Text3DAbstract
+   + SliderAbstract
+   + MoveAbstract
+- Các hàm ở trên được viết dưới dạng Generic class để các class của Enemy, Bullet, Tower có thề kế thừa và thông qua các Ctrl để lấy thuộc tính và set lên UI.
+- Mình đã thêm một tính năng mới vào cho Tower để trong nó thực tế hơn đó là TowerDurability tạm dịch là độ bên của Tower.
+   + TowerDurability (new class) => chứa chỉ số độ bền hiện tại và tối đa.
+   + TowerDurabilitySlider (new class) => cập nhật chỉ số độ bền thông qua slider.
+
+- Mình muốn nó con game mặc dù là Tower Deffense tuy nhiên vì quái không tấn công được Tower nên mình đã thêm tính năng này để tạo độ khó cho một số màn chơi.
+
+Mục tiêu này đã hoàn thành và còn một vài class mình có thể Generic class được tuy nhiên mình vẫn chưa năm rõ là có nên hay không. Nên mình chỉ chắc chắn các class có thể và áp dụng nó.
+
+
 
 
 
