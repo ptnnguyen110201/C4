@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TowerDurability : LoadComPonentsManager
 {
+    [SerializeField] protected bool isDurability = true;
     [SerializeField] protected int maxDurability = 100;
     public int MaxDurability => maxDurability;
     [SerializeField] protected int currentDurability = 100;
@@ -16,9 +17,10 @@ public class TowerDurability : LoadComPonentsManager
     protected Coroutine ReduceDurability;
     protected override void OnEnable()
     {
-        base.OnEnable();
+        base.OnEnable();    
+        this.SetActive();
         this.StartReduce();
-
+   
 
     }
     protected virtual void StartReduce() 
@@ -30,7 +32,8 @@ public class TowerDurability : LoadComPonentsManager
     {
         while (this.currentDurability > 0)
         {
-            yield return new WaitForSeconds(this.decayRate); 
+            yield return new WaitForSeconds(this.decayRate);
+            if (this.isDurability) continue;
             this.currentDurability -= this.decayRate;
             this.currentDurability = Mathf.Clamp(this.currentDurability, 0, this.currentDurability);
             this.SetActive();

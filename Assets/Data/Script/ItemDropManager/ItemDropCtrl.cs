@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody))]
 public class ItemDropCtrl : PoolObj
 {
     [SerializeField] protected InventoryEnum inventoryEnum = InventoryEnum.Items;
@@ -11,11 +11,10 @@ public class ItemDropCtrl : PoolObj
     public ItemEnum ItemEnum => itemEnum;
     [SerializeField] protected int itemCount = 1;
     public int ItemCount => itemCount;
-    [SerializeField] protected Rigidbody rigi;
-    public Rigidbody Rigi => rigi;
+
     public override string GetName()
     {
-        throw new System.NotImplementedException();
+        return this.itemEnum.ToString();
     }
 
     public virtual void SetValue(ItemEnum itemEnum, int itemCount) 
@@ -29,19 +28,6 @@ public class ItemDropCtrl : PoolObj
         this.itemCount = itemCount;
         this.inventoryEnum = inventoryEnum;
     }
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        this.LoadItemDropSpawner();
-    }
-
-    protected virtual void LoadItemDropSpawner()
-    {
-        if (this.rigi != null) return;
-        this.rigi = transform.GetComponent<Rigidbody>();
-        Debug.Log(transform.name + ": Load ItemDropSpawner");
-    }
-
    
 
 }

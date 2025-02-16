@@ -10,7 +10,7 @@ public class EnemyDamageReceiver : DamageReceiver
     [SerializeField] protected SoundEnum DeathSound = SoundEnum.EnemyDeath;
     protected override void LoadComponents()
     {
-        base.LoadComponents(); 
+        base.LoadComponents();
         this.LoadEnemyCtrl();
         this.LoadCapsuleCollider();
     }
@@ -18,6 +18,7 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         base.Reborn();
         this.capsuleCollider.enabled = true;
+        this.enemyCtrl.EnemyHPSlider.gameObject.SetActive(true);
     }
     protected virtual void LoadEnemyCtrl()
     {
@@ -41,34 +42,33 @@ public class EnemyDamageReceiver : DamageReceiver
         this.RewardOnDead();
         this.enemyCtrl.EnemyAnimator.SetBool("isDead", this.isDead);
         this.capsuleCollider.enabled = false;
+        this.enemyCtrl.EnemyHPSlider.gameObject.SetActive(false);
         this.SpawnSound(transform.position);
         this.Invoke(nameof(this.Disappear), 3f);
     }
     protected override void OnHurt()
     {
-        base.OnDead();
         this.enemyCtrl.EnemyAnimator.SetTrigger("isHurt");
     }
-    protected virtual void Disappear() 
+    protected virtual void Disappear()
     {
         this.enemyCtrl.EnemyDespawn.DespawnObj();
     }
 
-    protected virtual void RewardOnDead() 
+    protected virtual void RewardOnDead()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 1, transform.position);
-            ItemsDropManager.Instance.DropItems(InventoryEnum.Items, ItemEnum.Wand, 1, transform.position);
-            ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Exp, 5, transform.position);
-        }
+        float Height = this.enemyCtrl.EnemyAgent.height;
+        Vector3 goldPos = new Vector3(transform.position.x, transform.position.y + Height, transform.position.z);
+        Vector3 expPos = new Vector3(transform.position.x, transform.position.y + Height + 0.3f, transform.position.z);
+        ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 5, goldPos);
+        ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Exp, 10, expPos);
+
 
         if (this.shooter == null) return;
-        TowerCtrl towerCtrl = this.shooter.GetComponent<TowerCtrl>();  
-        if (towerCtrl != null) 
-        {
-            towerCtrl.Add();
-        }
+        TowerCtrl towerCtrl = this.shooter.GetComponent<TowerCtrl>();
+        if (towerCtrl == null) return;
+        towerCtrl.Add();
+
 
     }
 
@@ -77,7 +77,7 @@ public class EnemyDamageReceiver : DamageReceiver
         Vector3 Pos = transform.parent.position;
         this.SpawnMuzzle(Pos);
         return base.Deduct(Hp);
-        
+
     }
     protected virtual void SpawnMuzzle(Vector3 spawnPoint)
     {

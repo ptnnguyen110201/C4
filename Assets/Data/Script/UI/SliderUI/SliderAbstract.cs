@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public abstract class SliderAbstract<T> : LoadComPonentsManager where T : MonoBehaviour
 {
     [SerializeField] protected Slider slider;
+    public Slider Slider => slider; 
     protected override void Start()
     {
         this.slider.onValueChanged.AddListener(OnSliderValueChanged);

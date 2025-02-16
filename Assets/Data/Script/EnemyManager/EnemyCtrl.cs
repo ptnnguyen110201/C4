@@ -22,6 +22,8 @@ public class EnemyCtrl : PoolObj
     [SerializeField] protected EnemyMove enemyMove;
     public EnemyMove EnemyMove => enemyMove;
 
+    [SerializeField] protected EnemyHPSlider enemyHPSlider;
+    public EnemyHPSlider EnemyHPSlider => enemyHPSlider;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -32,6 +34,7 @@ public class EnemyCtrl : PoolObj
         this.LoadEnemyDamageReceiver();
         this.LoadEnemyDespawn();
         this.LoadEnemyMove();
+        this.LoadEnemyHPSlider();
     }
     protected virtual void LoadModel()
     {
@@ -81,6 +84,12 @@ public class EnemyCtrl : PoolObj
         if (this.enemyMove != null) return;
         this.enemyMove = transform.GetComponentInChildren<EnemyMove>();
         Debug.Log(transform.name + ": Load EnemyMove", gameObject);
+    }
+    protected virtual void LoadEnemyHPSlider()
+    {
+        if (this.enemyHPSlider != null) return;
+        this.enemyHPSlider = transform.GetComponentInChildren<EnemyHPSlider>();
+        Debug.Log(transform.name + ": Load EnemyHPSlider", gameObject);
     }
 
     public override string GetName() => this.enemyEnum.ToString();
