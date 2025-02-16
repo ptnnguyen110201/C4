@@ -135,10 +135,42 @@ Mục tiêu đã hoàn thành việc chỉnh sửa một vài class cơ bản đ
    + TowerDurabilitySlider (new class) => cập nhật chỉ số độ bền thông qua slider.
 
 - Mình muốn nó con game mặc dù là Tower Deffense tuy nhiên vì quái không tấn công được Tower nên mình đã thêm tính năng này để tạo độ khó cho một số màn chơi.
-
 Mục tiêu này đã hoàn thành và còn một vài class mình có thể Generic class được tuy nhiên mình vẫn chưa năm rõ là có nên hay không. Nên mình chỉ chắc chắn các class có thể và áp dụng nó.
 
+* Mục tiêu 4: Tập 51 ~ tập 60: Thiết kế thêm 2 - 3 nhân vật khác nhau với các vai trò khác nhau trong game(dự định sẽ là game MultiPlay)
+  + Worker :  Nhiệm vụ là có thể xây tháp, sửa chữa, nâng cấp tháp.
+  + Archer :  Nhiệm vụ là có thể bắn ra các loại cung để kết liễu kẻ thù giúp tăng tốc độ dọn quái.
+  + Mage :  Nhiệm vụ là có thể tạo ra các vật cản, hiệu ứng trong thời gian ngắn để giảm tốc độ, máu của quái để Tower có thể bắn dễ dàng hơn.
+
+* Mỗi character sẽ trang bị một vũ khí riêng và có thể nâng cấp để phục vụ cho các nhiệm vụ chính.
+  + Worker : Cầm búa có thể nâng cấp để tăng tốc độ xây tháp, sửa tháp, nâng cấp tháp.
+  + Archer : Cầm cung ( nỏ ) có thể nâng cấp để tăng  tốc độ bắn, lượng cung bắn ra.
+  + Mage : Cầm gậy phép có thể nâng cáp để tăng hiệu ứng kĩ năng hoặc kéo dài thời gian tồn tại kĩ năng.
 
 
+- Mình chỉ vừa mới xây xong mô hình 3D và các aiming Rig của nhân vật còn các vấn đề sâu mình hiện chỉ mới vẽ lên chưa triển khai.
+- Mình đã làm thêm 1 class là PlayerManager để quản lí người chơi có thể chọn nhân vật thông qua Enum.
 
+
+* Mục tiêu 4: Tập 61 ~ tập 70: Thêm các weapons, items cần thiết để có thể có nhiều lối chơi đa dạng.
+  - Với các weapons mình đã quyết định cho nó quyết định bởi Character nên sẽ chỉ có 3 loại vũ khí chính kèm theo 3 lớp nhân vật 
+    + Worker ( Búa )
+    + Archer ( Cung , Nỏ )
+    + Mage ( Gậy phép )
+  - Đối với Item mình đã quyết định táo bạo hơn là sẽ có các item như sau và chức năng của nó mình đã suy nghĩ trong 1 tuần qua
+    + Gold : Nhận được khi diệt các quái vật và xong nhiệm vụ.
+    + Exp : Nhận được khi diệt quái vật và xong nhiệm vụ
+    + Crystal, Iron, Arrow & Bow , Mana các nguyên liệu này sẽ được bán trong shop có thể mua để xây tháp, tăng cấp vũ khí hiện tại của các Character.
+   
+  - Chức nang của Item:
+    + Gold : Mua các vật phẩm trong shop, nâng cấp vũ khí, sửa chửa tower.
+    + Crystal : Nguyên liệu hiếm để nâng cấp vũ khí của các Character.
+    + Iron : Nguyên liệu để xây trụ.
+    + Arrow & Bow: Nguyên liệu để nâng cấp cung tên.
+    + Mana : Nguyên liệu để nâng cấp gậy phép.
+    
+  - Với việc có mặt các item này sẽ khiên người chơi cân nhắc tính toán xem là nâng cấp vũ khí bản thân hay là trụ trước để có thể vượt qua ải một cách tốt nhất.
+  - Với việc có quá nhiều item trong một Game Play 3D dạng Tower Deffense thế này việc người chơi đi nhặt từng Item là không khả thi nên mình đã biến nó thành cơ chế Item vô hình. 
+    + Gold, Exp : Tiêu diệt quái sẽ được tăng thẳng vào Inventory thay vì là đi nhặt từng Gold, Exp.
+    + Crystal, Iron, Arrow & Bow, Mana cũng tương tự sẽ có Shop quản lí riêng để người chơi có thể tự do mua vật phẩm cần thiết.
 
