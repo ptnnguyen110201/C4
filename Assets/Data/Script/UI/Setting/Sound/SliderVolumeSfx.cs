@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderVolumeSfx : SliderAbstract<MonoBehaviour>
+public class SliderVolumeSfx : SliderAbstract
 {
     protected override void OnSliderValueChanged(float value)
     {

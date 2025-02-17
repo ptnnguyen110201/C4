@@ -7,7 +7,7 @@ public class TowerExpText : Text3DGeneric<TowerCtrl>
 
     protected override void UpdateText()
     {
-        this.text.text = $"{this.parent.TowerLevel.CurrentExp}/{this.parent.TowerLevel.NextLevelExp}";
+        this.text.text = $"{this.parent.TowerLevel.GetCurrentExp()}/{this.parent.TowerLevel.GetNextLevelExp()}";
 
     }
 }

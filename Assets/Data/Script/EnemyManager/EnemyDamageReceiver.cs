@@ -61,7 +61,7 @@ public class EnemyDamageReceiver : DamageReceiver
         Vector3 goldPos = new Vector3(transform.position.x, transform.position.y + Height, transform.position.z);
         Vector3 expPos = new Vector3(transform.position.x, transform.position.y + Height + 0.3f, transform.position.z);
         ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 5, goldPos);
-        ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Exp, 10, expPos);
+        ItemsDropManager.Instance.DropItems(InventoryEnum.Currencies, ItemEnum.Exp, 1, expPos);
 
 
         if (this.shooter == null) return;

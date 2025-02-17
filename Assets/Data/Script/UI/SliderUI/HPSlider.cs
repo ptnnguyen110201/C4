@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class HPSlider<T> : SliderAbstract<T> where T : MonoBehaviour
+public abstract class HPSlider<T> : SliderAbstract where T : MonoBehaviour
 {
     [SerializeField] protected T parent;
     protected override void LoadComponents()

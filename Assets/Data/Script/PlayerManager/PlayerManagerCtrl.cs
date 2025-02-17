@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine;
-public class PlayerManagerCtrl : LoadComPonentsManager
+public class PlayerManagerCtrl : Singleton<PlayerManagerCtrl>
 {
     [SerializeField] protected PlayerSpawner playerSpawner;
     public PlayerSpawner PlayerSpawner => playerSpawner;
@@ -11,6 +11,9 @@ public class PlayerManagerCtrl : LoadComPonentsManager
 
 
     [SerializeField] protected PlayerEnum playerEnum;
+
+    [SerializeField] protected PlayerCtrl currentPlayer;
+    public PlayerCtrl CurrentPlayer => currentPlayer;   
 
     protected override void Awake()
     {
@@ -23,6 +26,7 @@ public class PlayerManagerCtrl : LoadComPonentsManager
         if (playerCtrl == null) return;
         PlayerCtrl newPlayer = this.playerSpawner.Spawn(playerCtrl);
         newPlayer.gameObject.SetActive(true);
+        this.currentPlayer = newPlayer;
     }
 
 

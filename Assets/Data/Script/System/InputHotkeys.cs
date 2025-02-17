@@ -19,7 +19,7 @@ public class InputHotkeys : Singleton<InputHotkeys>
 
     protected virtual void OpenInventory()
     {
-        this.isToogleInventoryUI = Input.GetKeyUp(KeyCode.P);
+        this.isToogleInventoryUI = Input.GetKeyUp(KeyCode.I);
     }
 
     protected virtual void ToogleMusic()

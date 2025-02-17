@@ -21,7 +21,7 @@ public class TowerLevel : LevelAbstract
 
     protected override bool DeductExp(int exp) => this.towerCtrl.Deduct(exp);
     public override int GetCurrentExp() => this.currentExp = this.towerCtrl.KillCount;
-    protected override int GetNextLevelExp() => this.nextLevelExp = this.currentLevel * 10;
+    public override int GetNextLevelExp() => this.nextLevelExp = this.currentLevel * 10;
     
       
     

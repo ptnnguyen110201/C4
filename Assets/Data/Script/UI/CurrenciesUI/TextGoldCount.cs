@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TextGoldCount : TextAbstract
 {
-    protected virtual void FixedUpdate() 
+    protected virtual void LateUpdate() 
     {
         this.LoadGoldCount();
     }

@@ -4,7 +4,7 @@ using Invector.vCharacterController;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public class PlayerCtrl : Singleton<PlayerCtrl>
+public class PlayerCtrl : LoadComPonentsManager
 {
     [SerializeField] protected vThirdPersonController vThirdPersonController;
     public vThirdPersonController VThirdPersonController => vThirdPersonController;

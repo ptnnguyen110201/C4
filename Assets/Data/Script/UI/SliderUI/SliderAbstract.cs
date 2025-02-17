@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class SliderAbstract<T> : LoadComPonentsManager where T : MonoBehaviour
+public abstract class SliderAbstract : LoadComPonentsManager 
 {
     [SerializeField] protected Slider slider;
     public Slider Slider => slider; 

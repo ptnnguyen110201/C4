@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class TextExpCount : TextAbstract
 {
-    protected virtual void FixedUpdate() 
+    protected virtual void LateUpdate() 
     {
-        this.LoadGoldCount();
+        this.LoadExpCount();
     }
 
-    protected virtual void LoadGoldCount() 
+    protected virtual void LoadExpCount() 
     {
-        ItemInventory item = InventoryManager.Instance.Currencies().FindItem(ItemEnum.Exp);
-        string goldCount;
-        if (item == null)  goldCount = "0";
-        else goldCount = item.itemCount.ToString() ;
-        this.text.text = goldCount;
+        int currentExp;
+        int nextExp;
+
+        PlayerLevel level = PlayerManagerCtrl.Instance.CurrentPlayer.PlayerLevel;
+        currentExp = level.GetCurrentExp();
+        nextExp = level.GetNextLevelExp();
+
+        this.text.text = $"{(float)currentExp / nextExp * 100:F2}%";
+
     }
 }

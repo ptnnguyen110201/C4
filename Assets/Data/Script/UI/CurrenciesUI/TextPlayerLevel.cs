@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class TextPlayerLevel : TextAbstract
 {
-	protected virtual void FixedUpdate()
+	protected virtual void LateUpdate()
 	{
 		this.LoadGoldCount();
 	}
 
 	protected virtual void LoadGoldCount()
 	{
-		int level = PlayerCtrl.Instance.PlayerLevel.CurrentLevel;
+		int level = PlayerManagerCtrl.Instance.CurrentPlayer.PlayerLevel.CurrentLevel;
 		this.text.text = level.ToString();
 	}
 }

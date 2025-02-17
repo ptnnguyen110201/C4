@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SliderVolumeMusic : SliderAbstract<MonoBehaviour>
+public class SliderVolumeMusic : SliderAbstract
 {
     protected override void OnSliderValueChanged(float value)
     {
