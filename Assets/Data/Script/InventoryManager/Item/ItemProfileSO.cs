@@ -6,5 +6,6 @@ public class ItemProfileSO : ScriptableObject
 {
     public ItemEnum itemEnum;
     public string itemName;
+    public Sprite itemSprite;
     public bool isStackable = false;
 }

@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryItemBtn : ButtonAbstract
 {
     [SerializeField] protected ItemInventory itemInventory;
-    [SerializeField] protected TextMeshProUGUI itemName;
+    [SerializeField] protected Image ItemImage;
     [SerializeField] protected TextMeshProUGUI itemCount;
     public ItemInventory ItemInventory => itemInventory;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadText();
+        this.LoadItemText();
     }
     protected virtual void FixedUpdate() 
     {
         this.ItemUpdating();
     }
-    protected virtual void LoadText()
+    protected virtual void LoadItemText()
     {
-        if (this.itemName != null && this.itemCount != null) return;
-        this.itemName = transform.Find("itemName").GetComponent<TextMeshProUGUI>();
+        if (this.ItemImage != null && this.itemCount != null) return;
+        this.ItemImage = transform.Find("ItemImage").GetComponent<Image>();
         this.itemCount = transform.Find("itemCount").GetComponent<TextMeshProUGUI>();
         Debug.Log(transform.name + ": Load Text", gameObject);
     }
@@ -40,7 +41,7 @@ public class InventoryItemBtn : ButtonAbstract
             Destroy(this.gameObject);
             return;
         }
-        this.itemName.text = this.itemInventory.itemProfileSO.itemName.ToString();
+        this.ItemImage.sprite = this.itemInventory.itemProfileSO.itemSprite;
         this.itemCount.text = this.itemInventory.itemCount.ToString();
     }
     protected override void OnClick()

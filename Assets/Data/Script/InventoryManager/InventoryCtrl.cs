@@ -11,7 +11,8 @@ public abstract class InventoryCtrl : LoadComPonentsManager
     public virtual void AddItem(ItemInventory item)
     {
         ItemInventory itemExist = this.FindItem(item.itemProfileSO.itemEnum);
-        if (!item.itemProfileSO.isStackable || itemExist == null)
+
+        if (!item.itemProfileSO.isStackable || itemExist == null || item.isFullStack(itemExist.itemCount))
         {
             item.itemID = Random.Range(0, 1000);
             this.items.Add(item);
@@ -35,7 +36,9 @@ public abstract class InventoryCtrl : LoadComPonentsManager
         if (this.items.Count <= 0) return null;
         foreach (ItemInventory itemInventory in this.items) 
         {
-            if(itemInventory.itemProfileSO.itemEnum == itemEnum) return itemInventory;
+            if(itemInventory.isFullStack(itemInventory.itemCount)) continue;
+            if(itemInventory.itemProfileSO.itemEnum == itemEnum)
+            return itemInventory;
         }
         return null;
     }
