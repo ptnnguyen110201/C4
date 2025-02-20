@@ -3,7 +3,6 @@
 ## Mục Lục
 
 - [Mốc thời gian phát triển Project](#moc-thoi-gian-phat-trien-project)
-
   - [16/1/2025: E9 - E20](#1612025-e9---e20)
   - [17/1/2025: E21 - E29](#1712025-e21---e29)
   - [18/1/2025: E30 - E42](#1812025-e30---e42)
@@ -18,7 +17,6 @@
   - [31/1/2025: E86 - E95](#3112025-e86---e95)
 
 - [Kế hoạch sau khi hoàn thành Seri C4](#ke-hoach-sau-khi-hoan-thanh-seri-c4)
-
   - [Tập 20 - 30: Thiết kế thêm Map, Path, Enemy](#tap-20---30-thiet-ke-them-map-path-enemy)
   - [Tập 31 - 40: Tối ưu hóa Code](#tap-31---40-toi-uu-hoa-code)
   - [Tập 41 - 50: Generic hóa Code](#tap-41---50-generic-hoa-code)
@@ -29,11 +27,79 @@
 
 - [Kết luận 🎯](#ket-luan-🎯)
 
+
+## Mốc thời gian phát triển Project
+
+### 16/1/2025: E9 - E20
+- 🚀 **Tạo GitHub**, làm quen với môi trường 3D, hoàn thành cơ bản.
+- 🏗️ Hoàn thành xây dựng map (**NavMeshSurface**), hệ thống di chuyển AI (**NavAgent** cơ bản).
+
+### 17/1/2025: E21 - E29
+- 🎭 **Thêm mới nhân vật và animation di chuyển** (Mixamo.com).
+- 🏗️ **Thiết lập thành công hệ thống Generic Singleton**.
+- 🛤️ **Xây dựng hệ thống di chuyển theo Path** (**PathManager Singleton**).
+- 🔍 **Cải tiến hàm `GetPath`**: Thêm enum để quản lý nhiều đường đi.
+
+### 18/1/2025: E30 - E42
+- 🏹 **Tower**: Thêm mục tiêu vào danh sách, tìm mục tiêu gần nhất.
+- 🛠️ **Spawner & Despawn cơ bản**.
+- 🔫 **Shooting cho Tower hoàn tất**.
+
+### 19/1/2025: E43 - E51
+- ⚔️ **Cơ chế truyền nhận Damage giữa Enemy và Bullet**.
+- 🎭 **Xử lý Animation Enemy khi chết, bị bắn, và hồi sinh**.
+- 🏹 **Enemy, Bullet... bị hủy được đưa về Object Pooling**.
+
+### 20/1/2025: E52 - E59
+- 🔦 **Tower không LookAt Enemy bị che bởi tường (Raycast)**.
+- 🎭 **Thêm Model ThirdPerson vào scene và điều khiển animation**.
+- 🤖 **Học Animation Rigging để điều khiển bộ phận cơ thể**.
+
+### 21/1/2025: Kiểm tra & tối ưu
+- ✅ **Xem lại code để tối ưu hiệu suất**.
+- 🔄 **Chuyển FixedUpdate không cần thiết sang Coroutine**.
+- ⚡ **Tối ưu Spawner, Moving của Bullet/Enemy**.
+- 🏹 **Chuyển từ GetName sang Enum để dễ quản lý**.
+
+### 23/1/2025: E60 - E62
+- 🎭 **Hoàn thiện Attack Animation**.
+- 🛠️ **Fix Animation Rigging: mixamorig:Spine2 là điểm chính xác**.
+- 🔄 **Test lại Coroutine vs Update: Hiệu suất tăng nhưng giảm độ mượt**.
+
+### 24/1/2025: E63 - E66
+- 🎯 **Hoàn thiện Shooting & Effects**.
+- 🏹 **Thiết lập Inventory (Currencies, Items).**
+- 🎭 **Làm quen với Scriptable Object**.
+
+### 25/1/2025: E67 - E73
+- 🏆 **Nhận vàng khi giết quái**.
+- 🏪 **Thiết kế UI Inventory**.
+- 🔄 **Cập nhật Items & Currencies lên UI**.
+
+### 26/1/2025: E74 - E80
+- 🎒 **Hệ thống Inventory hoàn chỉnh**.
+- 🎁 **ItemDropManager** (quái rơi vật phẩm).
+- ⌨️ **InputHotkey để bật/tắt Inventory**.
+
+### 27/1/2025: E81 - E85
+- 📈 **Hệ thống Level cho Player, Tower...**
+- 🎭 **Hiển thị Exp, Level trên UI**.
+- 🩸 **Thanh máu cho Enemy**.
+- 🔥 **Hiệu ứng Shooting của Tower**.
+
+### 31/1/2025: E86 - E95
+- 🎵 **Hệ thống hiệu ứng âm thanh và nhạc nền.**
+- 💥 **Hiệu ứng va chạm, Tower Muzzle...**
+- 
+## 🎯 Kết luận
+- 🏆 **Sau 12 ngày**, hoàn thành **Seri C4**, nắm chắc kiến thức quan trọng.
+- 🎯 Tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch** 🚀.
+- 🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
+
+  
 ## 📌 Kế hoạch sau khi hoàn thành Seri C4
-<a id='ke-hoach-sau-khi-hoan-thanh-seri-c4'></a>
 
-### 🏗️ Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
-
+### Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
 - 🗺️ **Thiết kế thành công 4 Map**:
   - 2 Map gồm 1 Path để Enemy di chuyển (**Độ khó - Dễ**).
   - 1 Map gồm 2 Path để Enemy di chuyển (**Độ khó - Trung**).
@@ -43,8 +109,7 @@
   - **Zombies**: Quái vật nhỏ, khó bắn trúng, tăng tốc khi máu thấp, miễn nhiễm sát thương trong thời gian ngắn.
 - 🔄 **Thiết kế SpawnPoint để Enemy tìm Path di chuyển hợp lý**.
 
-### ⚡ Tập 31 - 40: Tối ưu hóa Code
-
+### Tập 31 - 40: Tối ưu hóa Code
 - 🏹 **Tối ưu các hệ thống chính:**
   - TowerShooting
   - TowerTargeting
@@ -54,8 +119,7 @@
 - 🔄 **Thay thế Update/FixedUpdate không cần thiết bằng Coroutine để tiết kiệm tài nguyên**.
 - 🏗️ **Tách TowerLooking thành class riêng để hỗ trợ nhắm bắn nhiều mục tiêu**.
 
-### 🔧 Tập 41 - 50: Generic hóa Code
-
+### Tập 41 - 50: Generic hóa Code
 - 🏹 **Thiết kế lại các class dưới dạng Generic:**
   - Text3DAbstract
   - SliderAbstract
@@ -64,8 +128,7 @@
   - **TowerDurability**: Chứa chỉ số độ bền hiện tại/tối đa.
   - **TowerDurabilitySlider**: Hiển thị độ bền bằng slider.
 
-### 🏹 Tập 51 - 60: Thêm nhân vật mới (MultiPlay)
-
+### Tập 51 - 60: Thêm nhân vật mới (MultiPlay)
 - 🎭 **Thiết kế 3 nhân vật với vai trò khác nhau:**
   - **Worker**: Xây tháp, sửa chữa, nâng cấp tháp.
   - **Archer**: Bắn cung để hỗ trợ tiêu diệt quái.
@@ -76,8 +139,7 @@
   - Mage: **Gậy phép** (tăng hiệu ứng phép, kéo dài thời gian buff/debuff).
 - 🔄 **Thêm PlayerManager để quản lý nhân vật theo Enum**.
 
-### 🔫 Tập 61 - 70: Hệ thống Weapons, Items
-
+### Tập 61 - 70: Hệ thống Weapons, Items
 - 🏹 **Vũ khí chính ứng với từng nhân vật:**
   - Worker: **Búa**
   - Archer: **Cung, Nỏ**
@@ -94,8 +156,9 @@
   - **Crystal, Iron, Arrow & Bow, Mana**: Mua trong Shop để nâng cấp.
 
 ## 🎯 Kết luận
-
 - 🏆 **Sau 12 ngày**, hoàn thành **Seri C4**, nắm chắc kiến thức quan trọng.
 - 🎯 Tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch** 🚀.
 - 🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
+
+
 
