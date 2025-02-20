@@ -23,7 +23,7 @@
   - [Tập 41 - 50: Generic hóa Code](#tap-41---50-generic-hoa-code)
   - [Tập 51 - 60: Thêm nhân vật mới (MultiPlay)](#tap-51---60-them-nhan-vat-moi-multiplay)
   - [Tập 61 - 70: Hệ thống Weapons, Items](#tap-61---70-he-thong-weapons-items)
-  - [Tập 71 - 80: UI & Gameplay mượt mà](#tap-71---80-ui--gameplay-muot-ma)
+  - [Tập 71 - 90: UI & Gameplay mượt mà](#tap-71---80-ui--gameplay-muot-ma)
   - [Tập 91 - 95: Âm thanh & Hiệu ứng](#tap-91---95-am-thanh--hieu-ung)
 
 
