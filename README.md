@@ -6,11 +6,12 @@
   - [17/1/2025: E21 - E29](#1712025-e21---e29)
   - [18/1/2025: E30 - E42](#1812025-e30---e42)
   - [19/1/2025: E43 - E51](#1912025-e43---e51)
-- [Tiến độ dự án tiếp theo](#tien-do-du-an-tiep-theo)
   - [20/1/2025: E52 - E59](#2012025-e52---e59)
   - [21/1/2025: Kiểm tra & tối ưu](#2112025-kiem-tra--toi-uu)
   - [22 - 23/1/2025: E60 - E62](#22---2312025-e60---e62)
   - [24/1/2025: E63 - E66](#2412025-e63---e66)
+  - [25/1/2025 : E67 - E73]
+
 - [Kế hoạch sau khi hoàn thành Seri C4](#ke-hoach-sau-khi-hoan-thanh-seri-c4)
   - [Tập 20 - 30: Thiết kế thêm Map, Path, Enemy](#tap-20---30-thiet-ke-them-map-path-enemy)
   - [Tập 31 - 40: Tối ưu hóa Code](#tap-31---40-toi-uu-hoa-code)
