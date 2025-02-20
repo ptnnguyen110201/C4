@@ -104,7 +104,7 @@
 
 ## 🎯 Kết luận
 
-🏆 **Sau 12 ngày**, đã hoàn thành **Seri C4**, nắm chắc các kiến thức cần thiết.
-🎯 Mục tiêu tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch đề ra** 🚀. Dự kiến **hoàn thành trong 1 tháng**.
-🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
+- 🏆 **Sau 12 ngày**, đã hoàn thành **Seri C4**, nắm chắc các kiến thức cần thiết.
+- 🎯 Mục tiêu tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch đề ra** 🚀. Dự kiến **hoàn thành trong 1 tháng**.
+- 🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
 
