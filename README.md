@@ -15,7 +15,8 @@
   - [26/1/2025: E74 - E80](#2612025-e74---e80)
   - [27/1/2025: E81 - E85](#2712025-e81---e85)
   - [31/1/2025: E86 - E95](#3112025-e86---e95)
-
+- [Kết luận 🎯](#ket-luan-🎯)
+  
 - [Kế hoạch sau khi hoàn thành Seri C4](#ke-hoach-sau-khi-hoan-thanh-seri-c4)
   - [Tập 20 - 30: Thiết kế thêm Map, Path, Enemy](#tap-20---30-thiet-ke-them-map-path-enemy)
   - [Tập 31 - 40: Tối ưu hóa Code](#tap-31---40-toi-uu-hoa-code)
@@ -25,7 +26,7 @@
   - [Tập 71 - 80: UI & Gameplay mượt mà](#tap-71---80-ui--gameplay-muot-ma)
   - [Tập 91 - 95: Âm thanh & Hiệu ứng](#tap-91---95-am-thanh--hieu-ung)
 
-- [Kết luận 🎯](#ket-luan-🎯)
+
 
 <a id='moc-thoi-gian-phat-trien-project'></a>
 ## Mốc thời gian phát triển Project 
@@ -91,7 +92,8 @@
 ### 31/1/2025: E86 - E95
 - 🎵 **Hệ thống hiệu ứng âm thanh và nhạc nền.**
 - 💥 **Hiệu ứng va chạm, Tower Muzzle...**
-- 
+
+<a id='#ket-luan-🎯'></a>
 ## 🎯 Kết luận
 - 🏆 **Sau 12 ngày**, hoàn thành **Seri C4**, nắm chắc kiến thức quan trọng.
 - 🎯 Tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch** 🚀.
