@@ -21,3 +21,10 @@
   - [Tập 71 - 80: UI & Gameplay mượt mà](#tap-71---80-ui--gameplay-muot-ma)
   - [Tập 91 - 95: Âm thanh & Hiệu ứng](#tap-91---95-am-thanh--hieu-ung)
 - [Kết luận 🎯](#ket-luan-🎯)
+
+
+## Mốc thời gian phát triển Project
+
+### 16/1/2025: E9 - E20
+- 🚀 **Tạo GitHub**, làm quen với môi trường 3D, hoàn thành cơ bản.
+- 🏗️ Hoàn thành xây dựng map (**NavMeshSurface**), hệ thống di chuyển AI (**NavAgent** cơ bản).
