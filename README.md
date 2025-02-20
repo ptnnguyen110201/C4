@@ -99,6 +99,7 @@
 
   
 ## 📌 Kế hoạch sau khi hoàn thành Seri C4
+<a id='ke-hoach-sau-khi-hoan-thanh-seri-c4'></a>
 
 ### Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
 - 🗺️ **Thiết kế thành công 4 Map**:
