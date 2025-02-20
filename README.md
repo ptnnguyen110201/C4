@@ -28,7 +28,7 @@
 - [Kết luận 🎯](#ket-luan-🎯)
 
 <a id='moc-thoi-gian-phat-trien-project'></a>
-## Mốc thời gian phát triển Project
+## Mốc thời gian phát triển Project 
 
 
 ### 16/1/2025: E9 - E20
@@ -100,7 +100,7 @@
 <a id='ke-hoach-sau-khi-hoan-thanh-seri-c4'></a>
 ## 📌 Kế hoạch sau khi hoàn thành Seri C4
 
-
+<a id='tap-20---30-thiet-ke-them-map-path-enemy'></a>
 ### Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
 - 🗺️ **Thiết kế thành công 4 Map**:
   - 2 Map gồm 1 Path để Enemy di chuyển (**Độ khó - Dễ**).
@@ -111,6 +111,7 @@
   - **Zombies**: Quái vật nhỏ, khó bắn trúng, tăng tốc khi máu thấp, miễn nhiễm sát thương trong thời gian ngắn.
 - 🔄 **Thiết kế SpawnPoint để Enemy tìm Path di chuyển hợp lý**.
 
+<a id='tap-31---40-toi-uu-hoa-code'></a>
 ### Tập 31 - 40: Tối ưu hóa Code
 - 🏹 **Tối ưu các hệ thống chính:**
   - TowerShooting
@@ -121,6 +122,7 @@
 - 🔄 **Thay thế Update/FixedUpdate không cần thiết bằng Coroutine để tiết kiệm tài nguyên**.
 - 🏗️ **Tách TowerLooking thành class riêng để hỗ trợ nhắm bắn nhiều mục tiêu**.
 
+<a id='tap-41---50-generic-hoa-code'></a>
 ### Tập 41 - 50: Generic hóa Code
 - 🏹 **Thiết kế lại các class dưới dạng Generic:**
   - Text3DAbstract
@@ -130,6 +132,7 @@
   - **TowerDurability**: Chứa chỉ số độ bền hiện tại/tối đa.
   - **TowerDurabilitySlider**: Hiển thị độ bền bằng slider.
 
+<a id='tap-51---60-them-nhan-vat-moi-multiplay'></a>
 ### Tập 51 - 60: Thêm nhân vật mới (MultiPlay)
 - 🎭 **Thiết kế 3 nhân vật với vai trò khác nhau:**
   - **Worker**: Xây tháp, sửa chữa, nâng cấp tháp.
@@ -141,6 +144,7 @@
   - Mage: **Gậy phép** (tăng hiệu ứng phép, kéo dài thời gian buff/debuff).
 - 🔄 **Thêm PlayerManager để quản lý nhân vật theo Enum**.
 
+<a id='tap-61---70-he-thong-weapons-items'></a>
 ### Tập 61 - 70: Hệ thống Weapons, Items
 - 🏹 **Vũ khí chính ứng với từng nhân vật:**
   - Worker: **Búa**
