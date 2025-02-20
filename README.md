@@ -1,4 +1,4 @@
-# C4 Seri của anh SAI
+# C4 Cùng PTN-Gaming
 
 ## Mục Lục
 - [Mốc thời gian phát triển Project](#moc-thoi-gian-phat-trien-project)
