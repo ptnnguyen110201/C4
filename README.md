@@ -99,7 +99,7 @@
   
 ## 📌 Kế hoạch sau khi hoàn thành Seri C4
 
-### 🏗️ Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
+### Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
 - 🗺️ **Thiết kế thành công 4 Map**:
   - 2 Map gồm 1 Path để Enemy di chuyển (**Độ khó - Dễ**).
   - 1 Map gồm 2 Path để Enemy di chuyển (**Độ khó - Trung**).
@@ -109,7 +109,7 @@
   - **Zombies**: Quái vật nhỏ, khó bắn trúng, tăng tốc khi máu thấp, miễn nhiễm sát thương trong thời gian ngắn.
 - 🔄 **Thiết kế SpawnPoint để Enemy tìm Path di chuyển hợp lý**.
 
-### ⚡ Tập 31 - 40: Tối ưu hóa Code
+### Tập 31 - 40: Tối ưu hóa Code
 - 🏹 **Tối ưu các hệ thống chính:**
   - TowerShooting
   - TowerTargeting
@@ -119,7 +119,7 @@
 - 🔄 **Thay thế Update/FixedUpdate không cần thiết bằng Coroutine để tiết kiệm tài nguyên**.
 - 🏗️ **Tách TowerLooking thành class riêng để hỗ trợ nhắm bắn nhiều mục tiêu**.
 
-### 🔧 Tập 41 - 50: Generic hóa Code
+### Tập 41 - 50: Generic hóa Code
 - 🏹 **Thiết kế lại các class dưới dạng Generic:**
   - Text3DAbstract
   - SliderAbstract
@@ -128,7 +128,7 @@
   - **TowerDurability**: Chứa chỉ số độ bền hiện tại/tối đa.
   - **TowerDurabilitySlider**: Hiển thị độ bền bằng slider.
 
-### 🏹 Tập 51 - 60: Thêm nhân vật mới (MultiPlay)
+### Tập 51 - 60: Thêm nhân vật mới (MultiPlay)
 - 🎭 **Thiết kế 3 nhân vật với vai trò khác nhau:**
   - **Worker**: Xây tháp, sửa chữa, nâng cấp tháp.
   - **Archer**: Bắn cung để hỗ trợ tiêu diệt quái.
@@ -139,7 +139,7 @@
   - Mage: **Gậy phép** (tăng hiệu ứng phép, kéo dài thời gian buff/debuff).
 - 🔄 **Thêm PlayerManager để quản lý nhân vật theo Enum**.
 
-### 🔫 Tập 61 - 70: Hệ thống Weapons, Items
+### Tập 61 - 70: Hệ thống Weapons, Items
 - 🏹 **Vũ khí chính ứng với từng nhân vật:**
   - Worker: **Búa**
   - Archer: **Cung, Nỏ**
