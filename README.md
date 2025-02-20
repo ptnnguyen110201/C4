@@ -32,3 +32,7 @@
 ### 16/1/2025: E9 - E20
 - 🚀 **Tạo GitHub**, làm quen với môi trường 3D, hoàn thành cơ bản.
 - 🏗️ Hoàn thành xây dựng map (**NavMeshSurface**), hệ thống di chuyển AI (**NavAgent** cơ bản).
+
+### 17/1/2025: E21 - E29
+- 🚀 **Tạo GitHub**, làm quen với môi trường 3D, hoàn thành cơ bản.
+- 🏗️ Hoàn thành xây dựng map (**NavMeshSurface**), hệ thống di chuyển AI (**NavAgent** cơ bản).
