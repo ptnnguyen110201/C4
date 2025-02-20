@@ -29,6 +29,7 @@
 
 
 ## Mốc thời gian phát triển Project
+<a id='moc-thoi-gian-phat-trien-project'></a>
 
 ### 16/1/2025: E9 - E20
 - 🚀 **Tạo GitHub**, làm quen với môi trường 3D, hoàn thành cơ bản.
