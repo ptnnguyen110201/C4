@@ -1,6 +1,7 @@
 # C4 Cùng PTN-Gaming
 
 ## Mục Lục
+
 - [Mốc thời gian phát triển Project](#moc-thoi-gian-phat-trien-project)
   - [16/1/2025: E9 - E20](#1612025-e9---e20)
   - [17/1/2025: E21 - E29](#1712025-e21---e29)
@@ -23,8 +24,9 @@
   - [Tập 61 - 70: Hệ thống Weapons, Items](#tap-61---70-he-thong-weapons-items)
   - [Tập 71 - 80: UI & Gameplay mượt mà](#tap-71---80-ui--gameplay-muot-ma)
   - [Tập 91 - 95: Âm thanh & Hiệu ứng](#tap-91---95-am-thanh--hieu-ung)
-  
+
 - [Kết luận 🎯](#ket-luan-🎯)
+
 
 ## Mốc thời gian phát triển Project
 
@@ -152,5 +154,11 @@
 - 🏪 **Hệ thống Item Vô Hình:**
   - **Gold, Exp**: Nhận trực tiếp khi diệt quái.
   - **Crystal, Iron, Arrow & Bow, Mana**: Mua trong Shop để nâng cấp.
+
+## 🎯 Kết luận
+- 🏆 **Sau 12 ngày**, hoàn thành **Seri C4**, nắm chắc kiến thức quan trọng.
+- 🎯 Tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch** 🚀.
+- 🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
+
 
 
