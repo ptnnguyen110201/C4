@@ -27,9 +27,9 @@
 
 - [Kết luận 🎯](#ket-luan-🎯)
 
-
-## Mốc thời gian phát triển Project
 <a id='moc-thoi-gian-phat-trien-project'></a>
+## Mốc thời gian phát triển Project
+
 
 ### 16/1/2025: E9 - E20
 - 🚀 **Tạo GitHub**, làm quen với môi trường 3D, hoàn thành cơ bản.
@@ -97,9 +97,9 @@
 - 🎯 Tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch** 🚀.
 - 🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
 
-  
-## 📌 Kế hoạch sau khi hoàn thành Seri C4
 <a id='ke-hoach-sau-khi-hoan-thanh-seri-c4'></a>
+## 📌 Kế hoạch sau khi hoàn thành Seri C4
+
 
 ### Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
 - 🗺️ **Thiết kế thành công 4 Map**:
