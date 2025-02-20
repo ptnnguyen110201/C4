@@ -88,23 +88,70 @@
 ### 31/1/2025: E86 - E95
 - 🎵 **Hệ thống hiệu ứng âm thanh và nhạc nền.**
 - 💥 **Hiệu ứng va chạm, Tower Muzzle...**
+- 
+## 🎯 Kết luận
+- 🏆 **Sau 12 ngày**, hoàn thành **Seri C4**, nắm chắc kiến thức quan trọng.
+- 🎯 Tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch** 🚀.
+- 🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
 
+  
 ## 📌 Kế hoạch sau khi hoàn thành Seri C4
 
 ### 🏗️ Tập 20 - 30: Thiết kế thêm Map, Path, Enemy
-- 🗺️ **Thêm 4 Map với độ khó khác nhau**.
-- 👾 **Thiết kế thêm 8 Enemy với khả năng riêng**.
+- 🗺️ **Thiết kế thành công 4 Map**:
+  - 2 Map gồm 1 Path để Enemy di chuyển (**Độ khó - Dễ**).
+  - 1 Map gồm 2 Path để Enemy di chuyển (**Độ khó - Trung**).
+  - 1 Map gồm 2 Path để Enemy di chuyển (**Độ khó - Khó, Map MultiPlay**).
+- 👾 **Thiết kế thành công 8 Enemy với 2 loại chính:**
+  - **Grutes**: Quái vật to, trâu, có khả năng hồi máu, tạo khiên.
+  - **Zombies**: Quái vật nhỏ, khó bắn trúng, tăng tốc khi máu thấp, miễn nhiễm sát thương trong thời gian ngắn.
+- 🔄 **Thiết kế SpawnPoint để Enemy tìm Path di chuyển hợp lý**.
 
 ### ⚡ Tập 31 - 40: Tối ưu hóa Code
-- ⚙️ **Tối ưu hóa TowerShooting, Targeting, Spawning...**
+- 🏹 **Tối ưu các hệ thống chính:**
+  - TowerShooting
+  - TowerTargeting
+  - TowerLooking (mới thêm)
+  - EnemySpawning
+  - Despawn
+- 🔄 **Thay thế Update/FixedUpdate không cần thiết bằng Coroutine để tiết kiệm tài nguyên**.
+- 🏗️ **Tách TowerLooking thành class riêng để hỗ trợ nhắm bắn nhiều mục tiêu**.
 
 ### 🔧 Tập 41 - 50: Generic hóa Code
-- 🏹 **Tạo các Generic Class để tối ưu quản lý code**.
+- 🏹 **Thiết kế lại các class dưới dạng Generic:**
+  - Text3DAbstract
+  - SliderAbstract
+  - MoveAbstract
+- 🏗️ **Thêm hệ thống độ bền cho Tower:**
+  - **TowerDurability**: Chứa chỉ số độ bền hiện tại/tối đa.
+  - **TowerDurabilitySlider**: Hiển thị độ bền bằng slider.
+
+### 🏹 Tập 51 - 60: Thêm nhân vật mới (MultiPlay)
+- 🎭 **Thiết kế 3 nhân vật với vai trò khác nhau:**
+  - **Worker**: Xây tháp, sửa chữa, nâng cấp tháp.
+  - **Archer**: Bắn cung để hỗ trợ tiêu diệt quái.
+  - **Mage**: Tạo vật cản, giảm tốc/máu quái.
+- 🏹 **Vũ khí của từng nhân vật:**
+  - Worker: **Búa** (tăng tốc độ xây/sửa/nâng cấp tháp).
+  - Archer: **Cung/Nỏ** (tăng tốc độ bắn, số mũi tên).
+  - Mage: **Gậy phép** (tăng hiệu ứng phép, kéo dài thời gian buff/debuff).
+- 🔄 **Thêm PlayerManager để quản lý nhân vật theo Enum**.
+
+### 🔫 Tập 61 - 70: Hệ thống Weapons, Items
+- 🏹 **Vũ khí chính ứng với từng nhân vật:**
+  - Worker: **Búa**
+  - Archer: **Cung, Nỏ**
+  - Mage: **Gậy phép**
+- 🎁 **Hệ thống Items và công dụng:**
+  - **Gold**: Mua vật phẩm, nâng cấp vũ khí, sửa tháp.
+  - **Exp**: Tăng level nhân vật.
+  - **Crystal**: Nguyên liệu hiếm để nâng cấp vũ khí.
+  - **Iron**: Nguyên liệu để xây trụ.
+  - **Arrow & Bow**: Nguyên liệu nâng cấp cung tên.
+  - **Mana**: Nguyên liệu nâng cấp gậy phép.
+- 🏪 **Hệ thống Item Vô Hình:**
+  - **Gold, Exp**: Nhận trực tiếp khi diệt quái.
+  - **Crystal, Iron, Arrow & Bow, Mana**: Mua trong Shop để nâng cấp.
 
 
-## 🎯 Kết luận
-
-- 🏆 **Sau 12 ngày**, đã hoàn thành **Seri C4**, nắm chắc các kiến thức cần thiết.
-- 🎯 Mục tiêu tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch đề ra** 🚀. Dự kiến **hoàn thành trong 1 tháng**.
-- 🙏 **Cảm ơn mọi người đã theo dõi và giúp đỡ!** 💙
 
