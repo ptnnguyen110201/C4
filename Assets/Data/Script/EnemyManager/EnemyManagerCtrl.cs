@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManagerCtrl : LoadComPonentsManager
+public class EnemyManagerCtrl : Singleton<EnemyManagerCtrl>
 {
     [SerializeField] protected EnemySpawner enemySpawner;
     public EnemySpawner EnemySpawner => enemySpawner;
 
-    [SerializeField] protected EnemyPrefabs enemyPrefabs;
-    public EnemyPrefabs EnemyPrefabs => enemyPrefabs;
-
+    [SerializeField] protected EnemySpawning enemySpawning;
+    public EnemySpawning EnemySpawning => enemySpawning;
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadEnemySpawner();
-        this.LoadEnemyPrefabs();
+        this.LoadEnemySpawning();
     }
 
     protected virtual void LoadEnemySpawner() 
@@ -23,11 +22,11 @@ public class EnemyManagerCtrl : LoadComPonentsManager
         this.enemySpawner = transform.GetComponentInChildren<EnemySpawner>();
         Debug.Log(transform.name + ": Load EnemySpawner", gameObject);
     }
-    protected virtual void LoadEnemyPrefabs()
-    {
-        if (this.enemyPrefabs != null) return;
-        this.enemyPrefabs = transform.GetComponentInChildren<EnemyPrefabs>();
-        Debug.Log(transform.name + ": Load EnemyPrefabs", gameObject);
-    }
 
+    protected virtual void LoadEnemySpawning()
+    {
+        if (this.enemySpawning != null) return;
+        this.enemySpawning = transform.GetComponentInChildren<EnemySpawning>();
+        Debug.Log(transform.name + ": Load EnemySpawning", gameObject);
+    }
 }

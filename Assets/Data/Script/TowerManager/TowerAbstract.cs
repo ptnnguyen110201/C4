@@ -13,7 +13,7 @@ public abstract class TowerAbstract : LoadComPonentsManager
     protected virtual void LoadTowerCtrl()
     {
         if (this.towerCtrl != null) return;
-        this.towerCtrl = transform.GetComponentInParent<TowerCtrl>();
+        this.towerCtrl = transform.GetComponentInParent<TowerCtrl>(true);
         Debug.Log(transform.name + ": Load TowerCtrl", gameObject);
     }
 

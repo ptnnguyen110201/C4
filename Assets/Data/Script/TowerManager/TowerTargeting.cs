@@ -113,6 +113,7 @@ public class TowerTargeting : TowerAbstract
 
         if (Physics.Raycast(transform.position, directionToTarget, out RaycastHit hitInfo, distanceToTarget, this.obstacleLayerMask))
         {
+            
             Vector3 directionToCollider = hitInfo.point - transform.position;
             float distanceToCollider = directionToCollider.magnitude;
 

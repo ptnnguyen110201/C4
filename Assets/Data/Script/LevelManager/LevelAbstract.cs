@@ -6,12 +6,21 @@ public abstract class LevelAbstract : LoadComPonentsManager
 {
     [SerializeField] protected int currentLevel = 1;
     public int CurrentLevel => currentLevel;
-    [SerializeField] protected int maxLevel = 100;
+    [SerializeField] protected int maxLevel ;
     [SerializeField] protected int currentExp;
     [SerializeField] protected int nextLevelExp;
     public abstract int GetCurrentExp();
+    public abstract int GetNextLevelExp();
+    public abstract int GetLevel();
+    public abstract int GetMaxLevel();
     protected abstract bool DeductExp(int exp);
-    protected virtual void FixedUpdate() 
+    protected override void Start()
+    {
+        base.Start();
+        this.GetLevel();
+        this.GetMaxLevel();
+    }
+    protected virtual void LateUpdate() 
     {
         this.Leveling();
     }
@@ -24,7 +33,7 @@ public abstract class LevelAbstract : LoadComPonentsManager
 
         this.currentLevel++;
     }
-    public virtual int GetNextLevelExp() =>  this.currentLevel * 10;
+  
 
 
 }

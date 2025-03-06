@@ -4,9 +4,10 @@ using UnityEngine;
 
 public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
 {
-   
-    [SerializeField] protected int spawnedCount = 0; 
+
+    [SerializeField] protected int spawnedCount = 0;
     [SerializeField] protected Transform poolHolder;
+    public void SetParentHolder(T obj) => obj.transform.parent = this.poolHolder.transform;
     [SerializeField] protected List<T> inPoolObjs;
     [SerializeField] protected PoolPrefabs<T> poolPrefabs;
     public PoolPrefabs<T> PoolPrefabs => poolPrefabs;
@@ -21,7 +22,7 @@ public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
     {
         if (this.poolHolder != null) return;
         this.poolHolder = transform.Find("PoolHolder");
-        if(this.poolHolder == null) 
+        if (this.poolHolder == null)
         {
             this.poolHolder = new GameObject("PoolHolder").transform;
             this.poolHolder.parent = transform;
@@ -46,10 +47,10 @@ public abstract class Spawner<T> : LoadComPonentsManager where T : MonoBehaviour
         {
             newObj = Instantiate(obj);
             newObj.name = obj.name;
-            this.spawnedCount++;
-        }
-        if (this.poolHolder != null) newObj.transform.parent = this.poolHolder.transform;
 
+        }
+        if (this.poolHolder != null) this.SetParentHolder(newObj);
+        this.spawnedCount++;
         return newObj;
 
     }

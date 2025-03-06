@@ -10,6 +10,21 @@ public class BulletCtrl : PoolObj
     [SerializeField] protected Transform shooter;
     public Transform Shooter => shooter;
 
+    [SerializeField] protected BulletDamagerSender bulletDamagerSender;
+    public BulletDamagerSender BulletDamagerSender => bulletDamagerSender;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadBulletDamageSender();
+
+    }
+    protected virtual void LoadBulletDamageSender() 
+    {
+        if (this.bulletDamagerSender != null) return;
+        this.bulletDamagerSender = transform.GetComponentInChildren<BulletDamagerSender>(true);
+        Debug.Log(transform.name + "Load BulletDamageSender", gameObject);
+    }
     public virtual void SetShooter(Transform shooter) => this.shooter = shooter;
 
     protected override void OnDisable()

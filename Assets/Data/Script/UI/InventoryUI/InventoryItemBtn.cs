@@ -7,16 +7,17 @@ using UnityEngine.UI;
 public class InventoryItemBtn : ButtonAbstract
 {
     [SerializeField] protected ItemInventory itemInventory;
+    public ItemInventory ItemInventory => itemInventory;
     [SerializeField] protected Image ItemImage;
     [SerializeField] protected TextMeshProUGUI itemCount;
-    public ItemInventory ItemInventory => itemInventory;
+
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadItemText();
     }
-    protected virtual void FixedUpdate() 
+    protected virtual void LateUpdate()
     {
         this.ItemUpdating();
     }
@@ -33,10 +34,10 @@ public class InventoryItemBtn : ButtonAbstract
 
     }
 
-     
-    protected virtual void ItemUpdating() 
+
+    protected virtual void ItemUpdating()
     {
-        if (this.itemInventory.itemCount == 0) 
+        if (this.itemInventory.itemCount == 0)
         {
             Destroy(this.gameObject);
             return;
@@ -46,6 +47,6 @@ public class InventoryItemBtn : ButtonAbstract
     }
     protected override void OnClick()
     {
-
+        InventoryUI.Instance.OpenItemShowHide(this.itemInventory);
     }
 }

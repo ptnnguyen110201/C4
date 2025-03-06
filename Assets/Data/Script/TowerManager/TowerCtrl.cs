@@ -3,10 +3,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TowerCtrl : LoadComPonentsManager
+public class TowerCtrl : PoolObj
 {
-    [SerializeField] protected BulletEnum bulletEnum;
-    public BulletEnum BulletEnum => bulletEnum;
+    
+    [SerializeField] protected TowerProfileSO towerProfileSO;
+    public TowerProfileSO TowerProfileSO => towerProfileSO;
     [SerializeField] protected Transform model;
     [SerializeField] protected Transform rotator;
     public Transform Rotator => rotator;
@@ -15,22 +16,18 @@ public class TowerCtrl : LoadComPonentsManager
     public TowerTargeting TowerTargeting => towerTargeting;
 
     [SerializeField] protected TowerLooking towerLooking;
-    public TowerLooking TowerLooking => towerLooking;  
+    public TowerLooking TowerLooking => towerLooking;
 
     [SerializeField] protected TowerLevel towerLevel;
     public TowerLevel TowerLevel => towerLevel;
     [SerializeField] protected TowerDurability towerDurability;
     public TowerDurability TowerDurability => towerDurability;
-    [SerializeField] protected BulletSpawner bulletSpawner;
-    public BulletSpawner BulletSpawner => bulletSpawner;
 
- 
-    [SerializeField] protected BulletPrefabs bulletPrefabs;
-    public BulletPrefabs BulletPrefabs => bulletPrefabs;
+    [SerializeField] protected TowerAttribute towerAttribute;
+    public TowerAttribute TowerAttribute => towerAttribute;
 
-    [SerializeField] protected List<FirePoint> firePoints;
-    public List<FirePoint> FirePoints => firePoints;
-
+    [SerializeField] protected List<TowerFirePoint> towerFirePoints;
+    public List<TowerFirePoint> TowerFirePoint => towerFirePoints;
 
     [SerializeField] protected int killCount;
     public int KillCount => killCount;
@@ -39,13 +36,12 @@ public class TowerCtrl : LoadComPonentsManager
         base.LoadComponents();
         this.LoadModel();
         this.LoadTowerTargeting();
-        this.LoadTowerLooking();  
+        this.LoadTowerLooking();
         this.LoadTowerLevel();
         this.LoadTowerDurability();
-        this.LoadBulletSpawner();
-        this.LoadBulletPrefabs();
+        this.LoadTowerAttribute();
         this.LoadFirePoint();
-  
+
     }
 
     protected virtual void LoadModel()
@@ -81,24 +77,17 @@ public class TowerCtrl : LoadComPonentsManager
         this.towerDurability = transform.GetComponentInChildren<TowerDurability>();
         Debug.Log(transform.name + "Load TowerDurability ", gameObject);
     }
-    protected virtual void LoadBulletSpawner()
+    protected virtual void LoadTowerAttribute()
     {
-        if (this.bulletSpawner != null) return;
-        this.bulletSpawner = GameObject.FindAnyObjectByType<BulletSpawner>();
-        Debug.Log(transform.name + ": Load BulletSpawner ", gameObject);
+        if (this.towerAttribute != null) return;
+        this.towerAttribute = transform.GetComponentInChildren<TowerAttribute>();
+        Debug.Log(transform.name + "Load TowerAttribute ", gameObject);
     }
-    protected virtual void LoadBulletPrefabs()
-    {
-        if (this.bulletPrefabs != null) return;
-        this.bulletPrefabs = GameObject.FindAnyObjectByType<BulletPrefabs>();
-        Debug.Log(transform.name + ": Load BulletPrefabs ", gameObject);
-    }
-
     protected virtual void LoadFirePoint()
     {
-        if (this.firePoints.Count > 0) return;
-        FirePoint[] point = transform.GetComponentsInChildren<FirePoint>();
-        this.firePoints = point.ToList();
+        if (this.towerFirePoints.Count > 0) return;
+        TowerFirePoint[] point = transform.GetComponentsInChildren<TowerFirePoint>();
+        this.towerFirePoints = point.ToList();
         Debug.Log(transform.name + "Load FirePoint", gameObject);
     }
 
@@ -109,4 +98,9 @@ public class TowerCtrl : LoadComPonentsManager
         return true;
     }
     public virtual void Add() => this.killCount += 1;
+
+    public virtual void SetProfile(TowerProfileSO towerProfileSO) => this.towerProfileSO = towerProfileSO;
+
+    public override string GetName() => this.towerProfileSO.towerEnum.ToString();
+   
 }

@@ -7,6 +7,7 @@ public class EnemySpawning : EnemyManagerAbstract
     [SerializeField] protected float spawnSpeed = 1.0f;
     [SerializeField] protected int maxSpawn = 10;
     [SerializeField] protected List<EnemyCtrl> spawnedEnemies = new();
+    public List<EnemyCtrl> Enemies => spawnedEnemies;
     protected Coroutine EnemySpawnCoroutine;
     protected Coroutine EnemyRemoveDeadCoroutine;
 
@@ -37,7 +38,7 @@ public class EnemySpawning : EnemyManagerAbstract
             if (this.spawnedEnemies.Count < this.maxSpawn)
             {
                 SpawnPoints spawnPoint = MapManager.Instance.CurrentMap.PathManager.GetSpawnPoint();
-                EnemyCtrl prefab = this.enemyManagerCtrl.EnemyPrefabs.GetRandom();
+                EnemyCtrl prefab = this.enemyManagerCtrl.EnemySpawner.PoolPrefabs.GetRandom();
                 EnemyCtrl newEnemy = this.enemyManagerCtrl.EnemySpawner.Spawn(prefab, spawnPoint.SpawnPoint.position);
 
                 Path path = MapManager.Instance.CurrentMap.PathManager.GetPath(spawnPoint.PathEnum);

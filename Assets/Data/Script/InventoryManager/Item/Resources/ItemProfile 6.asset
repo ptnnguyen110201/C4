@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1295c1411a9a19f47bc1f1c6cfa2daa5, type: 3}
   m_Name: ItemProfile 6
   m_EditorClassIdentifier: 
+  inventoryEnum: 2
   itemEnum: 7
-  itemName: Mana
-  itemSprite: {fileID: 21300000, guid: 6592b916f86b19e428db6f6847c7b6dd, type: 3}
+  itemName: Metal
+  itemSprite: {fileID: 21300000, guid: 88963a2eb3d0dbb498f234f6bde6d893, type: 3}
   isStackable: 1
+  isUnlimitedStack: 0

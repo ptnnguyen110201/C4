@@ -13,6 +13,7 @@ public class MapManager : Singleton<MapManager>
     {
         base.Awake();
         this.SetMap();
+
     }
     protected virtual void SetMap() 
     {

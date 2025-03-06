@@ -1,8 +1,16 @@
 public enum EffectEnum
 {
     None = 0,
-    Fire1 = 1,
-    Fire2 = 2,
+    MuzzleMegeAttack = 1,
     MuzzleTurret = 3,
     MuzzleHit = 4,
+
+    
+
+    // Muzzle Mege
+    MuzzleMegeCharging = 5,
+    MuzzleDestroyBall = 6,
+    MuzzleSnow = 7,
+    MuzzleFire = 8,
+    MuzzleLaser = 9,
 }

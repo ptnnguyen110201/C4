@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class WeaponAbstract : LoadComPonentsManager
 {
-    [SerializeField] protected AttackPoint attackPoint;
-    public AttackPoint AttackPoint => attackPoint;
+    [SerializeField] protected SkillAttackPoint skillAttackPoint;
+    public SkillAttackPoint SkillAttackPoint => skillAttackPoint;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadAttackPoint();
+        this.LoadSkillAttackPoint();
     }
 
-    protected virtual void LoadAttackPoint()
+    protected virtual void LoadSkillAttackPoint()
     {
-        if (this.attackPoint != null) return;
-        this.attackPoint = transform.GetComponentInChildren<AttackPoint>();
-        this.attackPoint.transform.localPosition = new Vector3(0.05f, 0.5f, 0f); 
-        Debug.Log(transform.name + ": Load AttackPoint", gameObject);
+        if (this.skillAttackPoint != null) return;
+        this.skillAttackPoint = transform.GetComponentInChildren<SkillAttackPoint>();
+        this.skillAttackPoint.transform.localPosition = new Vector3(0.05f, 0.5f, 0f); 
+        Debug.Log(transform.name + ": Load SkillAttackPoint", gameObject);
     }
 }

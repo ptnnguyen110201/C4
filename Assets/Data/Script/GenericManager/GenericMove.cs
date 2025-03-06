@@ -4,7 +4,6 @@ public abstract class GenericMove<T> : LoadComPonentsManager where T : MonoBehav
 {
     [SerializeField] protected T parent;
     [SerializeField] protected float speed;
-
     protected override void LoadComponents()
     {
         base.LoadComponents();

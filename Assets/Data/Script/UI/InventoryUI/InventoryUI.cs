@@ -6,58 +6,61 @@ public class InventoryUI : Singleton<InventoryUI>
 {
     [SerializeField] protected bool isShow = true;
     public bool IsShow => isShow;
-    [SerializeField] protected Transform showHide;
+
+    [SerializeField] protected ShowHideUI showHide; 
+    [SerializeField] protected InventoryItemShowHide inventoryItemShowHide;
     [SerializeField] protected InventoryItemBtn InventoryItemBtn;
     [SerializeField] protected List<InventoryItemBtn> InventoryItemBtns;
-    protected virtual void FixedUpdate()
-    {
-        this.ItemUpdating();
-    }
     protected virtual void LateUpdate()
     {
-        this.HotkeyToogleInventory();
+        this.ItemUpdating();
+
     }
 
-    protected override void Start()
-    {
-        base.Start();
-        this.Show();
-        this.HideDefaultInventoryItem();
-    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadInventoryItemBtn();
+        this.LoadInventoryItemBtn(); 
+        this.LoadInventoryItemShowHide();
         this.LoadShowHiden();
     }
     protected virtual void LoadInventoryItemBtn()
     {
         if (this.InventoryItemBtn != null) return;
-        this.InventoryItemBtn = transform.GetComponentInChildren<InventoryItemBtn>();
+        this.InventoryItemBtn = transform.GetComponentInChildren<InventoryItemBtn>(true);
         Debug.Log(transform.name + ": Load InventoryItemBtn", gameObject);
+    }
+    protected virtual void LoadInventoryItemShowHide()
+    {
+        if (this.inventoryItemShowHide != null) return;
+        this.inventoryItemShowHide = transform.GetComponentInChildren<InventoryItemShowHide>(true);
+        Debug.Log(transform.name + ": Load InventoryItemShowHide", gameObject);
     }
     protected virtual void LoadShowHiden()
     {
         if (this.showHide != null) return;
-        this.showHide = transform.Find("ShowHide").GetComponent<Transform>();
+        this.showHide = transform.GetComponentInChildren<ShowHideUI>();
         Debug.Log(transform.name + ": LoadShowHiden", gameObject);
     }
     protected virtual void HideDefaultInventoryItem()
     {
+        this.inventoryItemShowHide.gameObject.SetActive(false);
         this.InventoryItemBtn.gameObject.SetActive(false);
     }
     public virtual void Show()
     {
-        showHide.gameObject.SetActive(true);
         this.isShow = true;
+        UIManager.Instance.ToggleUI(this.showHide);
     }
     public virtual void Hide()
     {
-        showHide.gameObject.SetActive(false);
         this.isShow = false;
+        this.HideDefaultInventoryItem();
+        UIManager.Instance.ToggleUI(this.showHide);
     }
-    public virtual void Tooggle()
+    public virtual void Toogle()
     {
+
         if (this.isShow) this.Hide();
         else this.Show();
     }
@@ -82,17 +85,22 @@ public class InventoryUI : Singleton<InventoryUI>
 
         }
     }
+
+
     protected virtual InventoryItemBtn GetExistItem(ItemInventory itemInventory)
     {
-        foreach(InventoryItemBtn itemBtn in this.InventoryItemBtns) 
+        foreach (InventoryItemBtn itemBtn in this.InventoryItemBtns)
         {
             if (itemBtn.ItemInventory.itemID == itemInventory.itemID) return itemBtn;
         }
         return null;
     }
 
-    protected virtual void HotkeyToogleInventory() 
+    public virtual void OpenItemShowHide(ItemInventory itemInventory)
     {
-        if (InputHotkeys.Instance.IsToogleInventoryUI) this.Tooggle();
+        if (itemInventory == null || itemInventory.itemCount == 0) return;
+        this.inventoryItemShowHide.SetItemInventory(itemInventory);
+        this.inventoryItemShowHide.gameObject.SetActive(true);
     }
+
 }

@@ -6,9 +6,7 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
 {
     [SerializeField] protected T parent;
     [SerializeField] protected Spawner<T> spawner;
-    [SerializeField] protected float timeLife = 7f;
-    [SerializeField] protected float currentTime = 7f;
-    [SerializeField] protected bool isDespawnByTime = true;
+
 
     protected override void OnDisable()
     {
@@ -67,4 +65,9 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
             yield return null;
         }
     }
+
+    
+    
+
+    
 }

@@ -7,13 +7,8 @@ public class SettingUI : Singleton<SettingUI>
     protected bool isShow = true;
     protected bool IsShow => isShow;
 
-    [SerializeField] protected Transform showHide;
+    [SerializeField] protected ShowHideUI showHide;
 
-    protected override void Start()
-    {
-        base.Start();
-        this.Hide();
-    }
 
     protected override void LoadComponents()
     {
@@ -24,26 +19,24 @@ public class SettingUI : Singleton<SettingUI>
     protected virtual void LoadShowHide()
     {
         if (this.showHide != null) return;
-        this.showHide = transform.Find("ShowHide");
+        this.showHide = transform.GetComponentInChildren<ShowHideUI>();
         Debug.Log(transform.name + ": LoadShowHide", gameObject);
     }
 
     public virtual void Show()
     {
         this.isShow = true;
-        this.showHide.gameObject.SetActive(this.isShow);
+        UIManager.Instance.ToggleUI(this.showHide);
     }
-
     public virtual void Hide()
     {
-        this.showHide.gameObject.SetActive(false);
         this.isShow = false;
+        UIManager.Instance.ToggleUI(this.showHide);
     }
-
-    public virtual void Toggle()
+    public virtual void Toogle()
     {
+
         if (this.isShow) this.Hide();
         else this.Show();
     }
-
 }

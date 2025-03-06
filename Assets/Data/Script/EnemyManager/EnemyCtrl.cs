@@ -5,6 +5,8 @@ public class EnemyCtrl : PoolObj
 {
     [SerializeField] protected EnemyEnum enemyEnum;
     [SerializeField] protected Transform model;
+    [SerializeField] protected SkinnedMeshRenderer skinnedMesh;
+    public SkinnedMeshRenderer SkinnedMeshRenderer => skinnedMesh;
     [SerializeField] protected Animator enemyAnimator;
     public Animator EnemyAnimator => enemyAnimator;
 
@@ -24,6 +26,8 @@ public class EnemyCtrl : PoolObj
 
     [SerializeField] protected EnemyHPSlider enemyHPSlider;
     public EnemyHPSlider EnemyHPSlider => enemyHPSlider;
+    [SerializeField] protected EnemyStatusManager enemyStatusManager;
+    public EnemyStatusManager EnemyStatusManager => enemyStatusManager;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -35,11 +39,13 @@ public class EnemyCtrl : PoolObj
         this.LoadEnemyDespawn();
         this.LoadEnemyMove();
         this.LoadEnemyHPSlider();
+        this.LoadEnemyStatusManager();
     }
     protected virtual void LoadModel()
     {
         if (this.model != null) return;
         this.model = transform.Find("Model");
+        this.skinnedMesh = transform.Find("Model").GetComponentInChildren<SkinnedMeshRenderer>(true);
         this.model.localPosition = new Vector3(0f, -0.1f, 0f);
         Debug.Log(transform.name + ": Load Model ", gameObject);
     }
@@ -90,6 +96,12 @@ public class EnemyCtrl : PoolObj
         if (this.enemyHPSlider != null) return;
         this.enemyHPSlider = transform.GetComponentInChildren<EnemyHPSlider>();
         Debug.Log(transform.name + ": Load EnemyHPSlider", gameObject);
+    }
+    protected virtual void LoadEnemyStatusManager()
+    {
+        if (this.enemyStatusManager != null) return;
+        this.enemyStatusManager = transform.GetComponentInChildren<EnemyStatusManager>();
+        Debug.Log(transform.name + ": Load EnemyStatusManager", gameObject);
     }
 
     public override string GetName() => this.enemyEnum.ToString();

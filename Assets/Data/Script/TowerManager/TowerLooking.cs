@@ -24,12 +24,13 @@ public class TowerLooking : TowerAbstract
     {
         while (true)
         {
-            yield return new WaitForSeconds(this.targetLoadSpeed);
+          
             this.targetLooking = towerCtrl.TowerTargeting.NearestEnemy;
+            yield return new WaitForFixedUpdate();
         }
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (!this.isActive()) 
         {
@@ -47,7 +48,7 @@ public class TowerLooking : TowerAbstract
         Vector3 newDirection = Vector3.RotateTowards(
             this.towerCtrl.Rotator.forward,
             directionToTarget,
-            this.rotationSpeed * Time.deltaTime,
+            this.rotationSpeed * Time.fixedDeltaTime,
             0.0f
         );
 
@@ -65,7 +66,7 @@ public class TowerLooking : TowerAbstract
         Vector3 newDirection = Vector3.RotateTowards(
             currentDirection,
             targetDirection,
-            this.rotationSpeed * Time.deltaTime, 
+            this.rotationSpeed * Time.fixedDeltaTime, 
             0.0f
         );
 

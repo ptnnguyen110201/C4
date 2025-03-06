@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1295c1411a9a19f47bc1f1c6cfa2daa5, type: 3}
   m_Name: ItemProfile 5
   m_EditorClassIdentifier: 
+  inventoryEnum: 2
   itemEnum: 6
-  itemName: Arrow
-  itemSprite: {fileID: 0}
+  itemName: Fire
+  itemSprite: {fileID: 21300000, guid: 49be3f7e426d73b40b2fc8787c8742e4, type: 3}
   isStackable: 1
+  isUnlimitedStack: 0

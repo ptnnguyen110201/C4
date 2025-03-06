@@ -6,15 +6,17 @@ using UnityEngine.AI;
 public class EnemyMove : GenericMove<EnemyCtrl>
 {
     [SerializeField] protected Path enemyPath;
-    public virtual void SetPath(Path path) => this.enemyPath = path;
-
     [SerializeField] protected Point currentPoint;
+
     [SerializeField] protected float pointDistance = Mathf.Infinity;
     [SerializeField] protected float stopDistance = 1f;
+
     [SerializeField] protected bool isFinish = false;
     [SerializeField] protected bool canMove = false;
     [SerializeField] protected bool isMoving = false;
 
+    public virtual void SetCanMove(bool canMove) => this.canMove = canMove;
+    public virtual void SetPath(Path path) => this.enemyPath = path;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -76,5 +78,5 @@ public class EnemyMove : GenericMove<EnemyCtrl>
         this.currentPoint = null;
     }
 
-
+  
 }

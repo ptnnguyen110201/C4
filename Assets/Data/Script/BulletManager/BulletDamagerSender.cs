@@ -10,9 +10,8 @@ public class BulletDamagerSender : DamageSender
     [SerializeField] protected Rigidbody rigiBody;
 
 
-    protected override void Send(DamageReceiver damageReceiver)
+    public override void Send(DamageReceiver damageReceiver)
     {
-        
         damageReceiver.SetShooter(this.bulletCtrl.Shooter.transform);
         base.Send(damageReceiver);
         this.Despawn();

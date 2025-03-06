@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1295c1411a9a19f47bc1f1c6cfa2daa5, type: 3}
   m_Name: ItemProfile
   m_EditorClassIdentifier: 
+  inventoryEnum: 1
   itemEnum: 1
   itemName: Gold
+  itemSprite: {fileID: 21300000, guid: d66da9503925e1f4a975c6788e5b8697, type: 3}
   isStackable: 1
+  isUnlimitedStack: 1

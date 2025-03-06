@@ -1,19 +1,19 @@
 using UnityEngine;
 
-public class BtnSettingToogle : ButtonAbstract
+public class SettingToggleBtn : ButtonAbstract
 {
     protected virtual void LateUpdate()
     {
-        this.HotkeyToogleMusic();
+        this.HotkeyToogleSetting();
     }
 
     protected override void OnClick()
     {
-        SettingUI.Instance.Toggle();
+        SettingUI.Instance.Toogle();
     }
 
-    protected virtual void HotkeyToogleMusic()
+    protected virtual void HotkeyToogleSetting()
     {
-        if (InputHotkeys.Instance.isToogleSetting) SettingUI.Instance.Toggle();
+        if (InputHotkeys.Instance.isToogleSetting) SettingUI.Instance.Toogle();
     }
 }

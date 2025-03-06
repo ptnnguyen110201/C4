@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class InventoryCurrency : InventoryCtrl
 {
+   
     public override InventoryEnum GetName() => InventoryEnum.Currencies;
 }
