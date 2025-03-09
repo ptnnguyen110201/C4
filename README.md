@@ -163,6 +163,7 @@
   - **Gold, Exp**: Nhận trực tiếp khi diệt quái.
   - **Crystal, Iron, Arrow & Bow, Mana**: Mua trong Shop để nâng cấp.
 
+
 ## 🎯 Kết luận
 - 🏆 **Sau 12 ngày**, hoàn thành **Seri C4**, nắm chắc kiến thức quan trọng.
 - 🎯 Tiếp theo: **Xây dựng game hoàn chỉnh theo kế hoạch** 🚀.
